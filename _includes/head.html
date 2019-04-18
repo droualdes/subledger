@@ -8,7 +8,7 @@
 
 	<meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 
-	<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+	<link rel="canonical" href="{{ site.url }}{{ page.url }}">	<!-- Is this correct? -->
 
 	<!-- Typekit Fonts -->
 	<script src="https://use.typekit.net/quh0hdu.js"></script>
@@ -16,18 +16,18 @@
 
 	<!-- CSS & Bootstrap -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{{ site.baseurl }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="{{ site.baseurl }}/bower_components/bootstrap/dist/css/custom.css">
+	<link rel="stylesheet" href="{{ site.baseurl | relative_url }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ site.baseurl | relative_url }}/bower_components/bootstrap/dist/css/custom.css">
 
 	<!-- Fontawesome JavaScript-->
-	<link rel="stylesheet" href="{{ site.baseurl }}/bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ site.baseurl | relative_url }}/bower_components/font-awesome/css/font-awesome.min.css">
 
 	<!-- AnimateScoll JavaScript-->
-	<script src="{{ site.baseurl }}/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="{{ site.baseurl }}/bower_components/animatescroll/animatescroll.js"></script>
+	<script src="{{ site.baseurl | relative_url }}/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="{{ site.baseurl | relative_url }}/bower_components/animatescroll/animatescroll.js"></script>
 
 	<!-- Bootstrap JavaScript: Needs to load last or else mobile menu fails! -->
-	<script src="{{ site.baseurl }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="{{ site.baseurl | relative_url }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     {% if page.url == 'blog/index.html' %}
     {% else %}
