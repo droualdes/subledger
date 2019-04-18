@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Subledger | Accounting for Developers - APIs for Accounting</title>
+
+<!-- Typekit Fonts -->
+<script src="https://use.typekit.net/quh0hdu.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
+
+<!-- CSS & Bootstrap -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/custom.css">
+
+<!-- Fontawesome JavaScript-->
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+<!-- AnimateScoll JavaScript-->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/animatescroll/animatescroll.js"></script>
+
+<!-- Bootstrap JavaScript: Needs to load last or else mobile menu fails! -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<!-- navigation -->
+<nav role="navigation" class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+    <a class="navbar-brand" href="/">
+      <div class="slogo responsive">Subledger
+      </div>
+    </a>
+        </div>
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav pull-right nav-center">
+      <li>
+        <a class="hidden" href="/#home">Home
+        </a>
+      </li>
+      <li>
+        <a href="/#overview" onclick="$('#overview').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Overview
+        </a>
+      </li>
+      <li>
+        <a href="/#how-works" onclick="$('#how-works').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">How it Works
+        </a>
+      </li>
+      <li>
+        <a href="/#qa" onclick="$('#qa').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Q&amp;A
+        </a>
+      </li>
+      <li>
+        <a href="/blog/index.html">Blog
+        </a>
+      </li>
+      <li>
+        <a href="/#footer" onclick="$('#footer').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Contact
+        </a>
+      </li>
+      <li>
+        <a href="http://app.subledger.com">Login
+        </a>
+      </li>
+      </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="top-spacer">
+</div>
+
+<!-- Article -->
+<article class="blog blog:first-of-type" id="Bookkeeping Spotlight">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<h2><a href="/blog/scaling-the-back-office-bookkeeping-spotlight/">Bookkeeping Spotlight</a></h2>
+				<p class="author"><span class="glyphicon glyphicon-book"></span> Posted on February 11, 2014</p>
+					<div class="addthis_toolbox addthis_default_style addthis_16x16_style addthis-padding" addthis:description="Subledger Blog: Bookkeeping Spotlight">
+					<a class="addthis_button_facebook"></a>
+					<a class="addthis_button_twitter"></a>
+					<a class="addthis_button_pinterest_share"></a>
+					<a class="addthis_button_email"></a>
+					</div>
+					<p>We typically think of sales &amp; marketing as the “beginning” of the sales funnel and the payment as the “end”. But if you look at things from the perspective of the back-office, payment/payout transactions are actually where the work begins. This post hopes to shine a little light on the bookkeeping and financial reporting part of the back-office.</p>
+					<h3>What is bookkeeping?</h3>
+					<p>Financial transactions have to be accounted for in the merchant’s ERP system (aka: accounting system or general ledger) in order to produce financial reports for business management and audit purposes.</p>
+					<p>
+						<img class="img-responsive" alt="Old School Accounting Photo" src="images/OldSchoolAccounting.jpg">
+					</p>
+					<p>Bookkeeping is the process of structuring raw transaction data (e.g. payment gateway Excel dump) in accounting format and recording it in the ERP.</p>
+					<h4>Here’s an example of a very simple transaction and it’s associated accounting entry.</h4>
+					<p>Transaction: $100 purchase, where the seller takes 80% of transaction value and 20% goes to the marketplace.</p>
+					<div class="code red">
+					<p>debit.cash(100)</p>
+					<p>credit.revenue(20)</p>
+					<p>credit.seller_accounts_payable(80)</p>
+					</div>
+					<p>As you can see it’s not a simple copy/paste job and therein lies the art of bookkeeping. As the transaction volume increases it becomes an unwieldy task to close the books every month. Typically these three areas become real pain points at scale:</p>
+					<h3>Finance team time burn</h3>
+					<p>Bookkeeping and financial reporting is a labor intensive monthly process for the finance team that scales with payment volume. The stopgap solution is to add more people to the finance department.</p>
+					<h3>Audit risk</h3>
+					<p>With a semi-manual process like bookkeeping there is inherent human error risk. To mitigate this risk a lot of finance team time is spent re-checking financials to ensure that they are ready for external audit.</p>
+					<h3>Engineering time burn</h3>
+					<p>At scale accounting for in-application transactions become unwieldy and the solution is typically:</p>
+					<p>&mdash; Start building some sort of automated subledger internally to automate the process or</p>
+					<p>&mdash; Implement an enterprise style ‘all in one’ billing solution like <a href="http://www.zuora.com/how-it-works/new-features/index.html" target="_blank">Zuora</a></p>
+					<p>Both options require significant engineering effort and distract from the business from it’s core competency.</p>
+					<p>We think the day has come where you can mash-up your payment API and Subledger to automate the payments and bookkeeping part of your back-office. <a href="/blog/programmable-commerce-and-the-high-velocity-back-office/?">#ProgrammableCommerce</p>
+			</div>
+		</div>
+	</div>
+</article>
+
+<!-- Article -->
+<article class="blog" id="Cryptocurrency Accounting">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+			<h2><a href="/blog/cryptocurrency-accounting/">Cryptocurrency Accounting</a></h2>
+			<div class="addthis_toolbox addthis_default_style addthis_16x16_style addthis-padding" addthis:title="Cryptocurrency Accounting">
+			<a class="addthis_button_facebook"></a>
+			<a class="addthis_button_twitter"></a>
+			<a class="addthis_button_pinterest_share"></a>
+			<a class="addthis_button_email"></a>
+			</div>
+			<blockquote>A bitcoin can be divided down to 8 decimal places. Therefore, 0.00000001 BTC is the smallest amount that can be handled in a transaction. If necessary, the protocol and related software can be modified to handle even smaller amounts. <a href="https://en.bitcoin.it/wiki/FAQ" target="_blank">bitcoin.it/wiki/FAQ</a></blockquote>
+			<p>We are excited to announce that we have the capability to account for cryptocurrency transactions!</p>
+			<p>Cryptocurrency which includes the likes of <a title="Bitcoin" href="https://bitcoin.org/en/" target="_blank">Bitcoin</a>, <a title="Litecoin" href="https://litecoin.org/" target="_blank">Litecoin</a>, <a title="Ripple" href="https://ripple.com/" target="_blank">Ripple</a> and <a href="http://dogecoin.com/" target="_blank">Dogecoin</a> are democratizing money transmission. Cryptocurrencies have been gaining popularity since 2009 as a way to implement a decentralized and secure information economy.</p>
+			<p>Because of their use of 8 decimal places traditional accounting solutions can’t handle cryptocurrency. With Subledger, we’re able to handle up to 12 decimal places, meaning we are fully equipped for any <a title="Bitcoin" href="https://bitcoin.org/en/" target="_blank">Bitcoin</a>, <a title="Litecoin" href="https://litecoin.org/" target="_blank">Litecoin</a>, <a title="Ripple" href="https://ripple.com/" target="_blank">Ripple</a> and <a href="http://dogecoin.com/" target="_blank">Dogecoin</a> transactions, and prepared for any of the new and emerging crypto currencies on the market.</p>
+			<p>If you’re building or operating crypto-currency services (gateways, market-makers etc) and you need to track fiat-currency and crypto-currency balances your your customers while getting real-time audit ready financial reporting, ping us at <a href="mailto:info@subledger.com">info@subledger.com </a>and we’ll get you set up!</p>
+			</div>
+		</div>
+	</div>
+</article>
+
+<!-- Article -->
+<article class="blog">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+			<h2><a href="/blog/programmable-commerce-and-the-high-velocity-back-office/">Programmable Commerce<br />&amp; the High Velocity Back Office</a></h2>
+			<p class="author"><span class="glyphicon glyphicon-book"></span> Dan Murphy, Posted on December 18, 2013</p>
+			<div class="addthis_toolbox addthis_default_style addthis_16x16_style addthis-padding" addthis:title="Programmable Commerce &amp; the High Velocity Back Office">
+			<a class="addthis_button_facebook"></a>
+			<a class="addthis_button_twitter"></a>
+			<a class="addthis_button_pinterest_share"></a>
+			<a class="addthis_button_email"></a>
+			</div>
+			<p>The high velocity business model is becoming more and more common, with e-commerce platforms like <a title="Uber" href="https://www.uber.com/" target="_blank">Uber</a> processing over <a href="http://techcrunch.com/2013/12/04/leaked-uber-numbers-which-weve-confirmed-point-to-over-1b-gross-revenue-213m-revenue/" target="_blank">1M transactions per week</a>. High velocity businesses are driven by super scalable customer acquisition and product delivery channels, but the back office often relies on homegrown software, spreadsheets and boring data entry work (seriously this still happens today!).</p>
+			<p>A new wave of companies are making the high velocity back office possible by providing core back office functions via API. A few key players include:</p>
+			<p>1. <a title="Balanced Payments" href="https://www.balancedpayments.com/" target="_blank">Balanced</a>, <a title="Braintree" href="http://braintreepayments.com" target="_blank">Braintree</a>, and <a title="Stripe" href="https://stripe.com/" target="_blank">Stripe</a> handle payments</p>
+			<p>2. <a href="https://coinbase.com/" target="_blank">Coinbase</a> for accepting Bitcoin payments.</p>
+			<p>3. <a href="http://standardtreasury.com/" target="_blank">Standard Treasury</a>, <a href="http://www.corefx.com/" target="_blank">COREFX</a>, <a href="http://www.bancbox.com/" target="_blank">Bancbox</a>, <a title="plad.io" href="https://plaid.io/" target="_blank">plaid.io</a> and more manage banking</p>
+			<p>4. <a href="http://subledger.com/" target="_blank">Subledger</a> (us!) takes care of accounting</p>
+			<p>5. Companies like <a href="https://www.lob.com/" target="_blank">Lob</a> do printing and posting</p>
+			<p>6. <a href="http://ripple.com/" target="_blank">Ripple</a> is excellent for currency exchange</p>
+			<p>7. <a href="https://getcardflight.com/" target="_blank">Card Flight</a> enables card present payments</p>
+			<p>Independently, these companies handle specific pieces of the back office, but still don’t create a holistic, automated solution. However, by combining these APIs together using preconfigured commerce logic we can create a completely automated high velocity back office for the commerce application. We are calling this open, modular approach programmable commerce.</p>
+			<p>
+				<img class="img-responsive" alt="Programmable Commerce Photo" src="images/ProgrammableCommerce.jpg">
+			</p>
+			<h3>An Example: How Programmable Commerce Works</h3>
+			<p>Take an example from an <a title="Uber" href="https://www.uber.com/" target="_blank">Uber</a> or <a title="Uber" href="https://www.lyft.com/" target="_blank">Lyft</a> style application. There are several events required to process a transaction, and each have commerce logic associated with them:</p>
+			<h4>Event 1: Ride Complete</h4>
+			<p>Step 1: Calculate ride_charge</p>
+			<p>Step 2: Get relevant sales tax sales from sales tax API.</p>
+			<p>Step 3: Add sales tax to ride_charge</p>
+			<p>Step 4: Account for ride_charge receivable from customer and earnings payable to driver.</p>
+			<h4>Event 2: Charge Customer Card</h4>
+			<p>Step 1: Charge customer’s card for ride_charge with payment API</p>
+			<p>Step 2: If the customer’s card is successfully processed, account for ride_charge received</p>
+			<h4>Event 3: Pay Driver (end of month)</h4>
+			<p>Step 1: Payout driver for earnings during month with payment API</p>
+			<p>Step 2: Account for earnings payout made to driver</p>
+			<p>In this simple example the payments, accounting, and sales tax APIs are all working seamlessly together throughout the process.</p>
+			<h4>What’s Next for Programmable Commerce?</h4>
+			<p>Here at Subledger, we’re working on making programmable commerce easily accessible. Our newest application, Plug N’ Play, is a simple rails app you can send transaction data to and it will account for the transaction automatically using pre-configured accounting-logic.</p>
+			<p>When Plug N’ Play is ready early next year, we believe it can be tweaked to incorporate other core commerce functions such as banking, payments, and more. Our hope is this will enable developers to copy/paste an entire back-office into their application.</p>
+			<p>We’re at the beginning of a new era of programmable commerce, and there are so many great startups making it possible. We are looking forward to working with everyone to build an open and modular financial ecosystem.</p>
+			<p>Please leave your thoughts on #ProgrammableCommerce in the comments below or ping me an email on <a href="mailto:info@subledger.com">info@subledger.com</a></p>
+			<p>If <a href="/blog/programmable-commerce-and-the-high-velocity-back-office/">#programmablecommerce</a> excites you, please share with everyone  ;-)</p>
+			<p>Here’s a tweet: “How do you create a high-velocity back office? Welcome to <a href="/blog/programmable-commerce-and-the-high-velocity-back-office/">#programmablecommerce</a></p>
+			</div>
+		</div>
+	</div>
+</article>
+
+<!-- Article -->
+<article class="blog">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+			<h2><a href="/blog/we-love-the-money-teams/">We Love the Money Teams</a></h2>
+			<p class="author"><span class="glyphicon glyphicon-book"></span> Dan Murphy, Posted on November 21, 2013</p>
+			<div class="addthis_toolbox addthis_default_style addthis_16x16_style addthis-padding"addthis:title="We Love the Money Teams">
+			<a class="addthis_button_facebook"></a>
+			<a class="addthis_button_twitter"></a>
+			<a class="addthis_button_pinterest_share"></a>
+			<a class="addthis_button_email"></a>
+			</div>
+			<p>
+				<img class="img-responsive" alt="money team" src="images/money-team.jpg">
+			</p>
+			<p class="text-center">
+				<caption>
+					(Above) The <a href="http://www.scripted.com" target="_blank">Scripted</a> team rocking our Money Team t-shirts
+				</caption>
+			</p>
+			<blockquote>“The term “Money Team” was introduced to me while staying at an Airbnb in Santa Cruz. One of the guests was working at Uber, and she told me that they have a group called the “Money Team” that is a combination of finance and engineering folks. Between them, they handle things like payments/payouts, currency exchanges, accounting and financial reporting.”&mdash;<a href="https://twitter.com/dantmurphy" target="_blank"> @dantmurphy</a></blockquote>
+			<p>Here at Subledger, we LOVE the Money Teams!</p>
+			<p>Just like the <a href="http://www.quora.com/Twitter-1/Does-Twitter-have-a-Growth-team/" target="_blank">Growth Teams</a> at companies like Twitter and Facebook are tasked with increasing user growth and scaling, Money Teams are responsible for building the systems to handle money flowing through the application at scale.</p>
+			<p>Subledger enables Money Teams to automate the accounting and financial reporting part of their commerce application, which is pretty handy when you’re doing thousands of transactions a day.</p>
+			<p>We think that the Money Team in every company are Rock Stars! So we hit up Eric at <a href="http://www.camputeepress.com/" target="_blank">Camputee Press</a> in San Francisco to print some sweet Money Team t-shirts with just the right amount of gold bling, and we’re thrilled to give them out to Subledger’s closest friends and customers.</p>
+			<p>
+				<img class="img-responsive" alt="Mural on Street Corner" src="images/MuralOnBuilding.jpg">
+			</p>
+			</div>
+		</div>
+	</div>
+</article>
+
+<!-- Article -->
+<article class="blog">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+			<h2><a href="/blog/rent-my-bikes-demo/">Announcing Rent My Bikes Demo with Balanced</a></h2>
+			<p class="author"><span class="glyphicon glyphicon-book"></span> Subledger, Posted on November 7, 2013</p>
+			<div class="addthis_toolbox addthis_default_style addthis_16x16_style addthis-padding" addthis:title="Announcing Rent My Bikes Demo with Balanced">
+			<a class="addthis_button_facebook"></a>
+			<a class="addthis_button_twitter"></a>
+			<a class="addthis_button_pinterest_share"></a>
+			<a class="addthis_button_email"></a>
+			</div>
+			<!-- 16:9 aspect ratio -->
+			<p>
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe src="//player.vimeo.com/video/79728163" width="640" height="360" frameborder="0" title="In-Application Accounting" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+				</div>
+			</p>
+			<p>Today we’re excited to announce a neat demonstration marketplace using <a href="https://www.balancedpayments.com" target="_blank">Balanced</a> and Subledger.</p>
+			<p>Balanced is a seamless payments API for marketplace businesses to charge buyers, hold funds in escrow, and pay-out sellers with ease. We think Balanced is a great product and we are thrilled to see our APIs working together.</p>
+			<p><a href="https://www.balancedpayments.com" target="_blank">Balanced</a> released a demonstration marketplace called <a href="http://rentmybikes.subledger.com/account?token=5MeD9x3CXZdZQDogszfm" target="_blank">Rent My Bikes</a>, an Airbnb-like platform for bicycles using the Balanced API. We noticed that while Balanced enabled the money to move through the marketplace, generating accounting/financial reports still required the use of spreadsheets and/or custom development.</p>
+			<p>That’s where Subledger stepped in. We added the Subledger API to the <a href="http://rentmybikes.subledger.com/account?token=5MeD9x3CXZdZQDogszfm" target="_blank">Rent My Bikes</a> marketplace, adding these accounting features to the marketplace:
+			<p>‘One-click’ accounting reports, enabling the finance department to instantly generate audit-ready reports like trial balance sheets and sales reports for the marketplace.</p>
+			<p>Showing buyers and sellers on Rent My Bikes their account balance and transaction history</p>
+			<p>Quickly showing the Rent My Bikes management team where they are financially, answering questions like:</p>
+			<p>Do we have enough funds in escrow to service our Account Payable to sellers?</p>
+			<p>Are we making a profit?</p>
+			<p>Who are the most profitable sellers?</p>
+			<p><a href="http://rentmybikes.subledger.com/account?token=5MeD9x3CXZdZQDogszfm" target="_blank">Check out the the live demo here.</a></p>
+			<p>You can check out the code behind this version of Rent My Bikes <a href="https://github.com/subledger/rentmybikes-rails" target="_blank">on Github.</a></p>
+			<h3>Here are some of the key features:</h3>
+			<h4>1. Financial Health Check</h4>
+			<p>
+				<img class="img-responsive" alt="FinancialHealthCheckScreenshot.png" src="images/FinancialHealthCheckScreenshot.png">
+			</p>
+			<p>Running a successful marketplace business always involves holding money on behalf of other people, including sellers and customers. You might have $400,000 in your marketplace’s escrow account, but $350,000 is payable to sellers, $10,000 is tax and $40,000 is your revenue. This sort of breakdown is critical to understanding the health of the marketplace and ensuring you have funds available for payouts.</p>
+			<p>In the Rent My Bikes demo, you can see how this breakdown works in the reporting section of the Subledger application. Click ‘GO!’ and watch Subledger generate the Balance Sheet in seconds.</p>
+			<h4>2. Audit Ready Accounting</h4>
+			<p>
+				<img class="img-responsive" alt="Audit Ready Accounting Screenshot" src="images/AuditReadyAccountingScreenshot.jpg">
+			</p>
+			<p>Your CFO is in charge of the financial health of your business, but they also have to produce ‘audit ready’ financial reports that tie-out to transactions in the marketplace. Subledger records every transaction in double-entry accounting format with a reference URL to a document proving that the transaction occurred (ready for the even the pickiest of auditors).</p>
+			<p>In the Rent My Bikes demo, you can see every transaction posting as a double-entry journal entry in the Activity Stream.</p>
+			<h4>3. Seller/Buyer Transparency</h4>
+			<p>
+				<img class="img-responsive" alt="Seller/Buyer Transparency Screenshot" src="images/SellerBuyerTransparencyScreenshot.png">
+			</p>
+			<p>Having a clear statement of user financials is critical for reducing billing related support tickets, particularly as the amount of buyers and sellers your company has to support, begins to grow.</p>
+			<p>With Subledger, both buyers and sellers have easy access to their current balance, transaction history, and a link back to a reference document (receipt or invoice) proving that the transaction occurred. This also allows for easy refunds, as they show up immediately on the customers account. Rent a bike and check out the “My Account” section in Rent My Bikes to see how this works.</p>
+			<p>We hope you like the addition of Subledger to <a href="http://rentmybikes.subledger.com/account?token=5MeD9x3CXZdZQDogszfm" target="_blank">Rent My Bikes</a> and that it gives you a taste of the power of both services combined.</p>
+			<p>We will be adding to Rent My Bikes (sales tax, currency exchange etc) over the coming months, so please let us know if you would like to see anything in particular.</p>
+			<p>Have questions about how it all works or you just want to say hi, ping me an email <a href="mailto:info@subledger.com">info@subledger.com</a></p>
+			</div>
+		</div>
+	</div>
+</article>
+
+<!-- Article -->
+<article class="blog">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+			<h2><a href="/blog/building-your-own-in-app-accounting-system/">Challenges with building<br />your own in-app accounting system</a></h2>
+			<p class="author"><span class="glyphicon glyphicon-book"></span> Dan Murphy, Posted on March 5, 2013</p>
+			<div class="addthis_toolbox addthis_default_style addthis_16x16_style" addthis:title="Subledger Blog: Challenges with building<br />your own in-app accounting system">
+			<a class="addthis_button_facebook"></a>
+			<a class="addthis_button_twitter"></a>
+			<a class="addthis_button_pinterest_share"></a>
+			<a class="addthis_button_email"></a>
+			</div>
+			<p>
+				<img class="img-responsive" alt="Nick Giancola" src="http://placehold.it/640x300?text=Missing File: 26aad35.jpg">
+			</p><p class="text-center">
+				<caption>
+					Interview with Nick Giancola, Partner at <a href="http://gophilosophie.com/" target="_blank">gophilosophie.com</a>
+				</caption>
+			</p>
+			<p><label>Dan:</label> Tell us a little about your background and what you do?</p>
+			<p><label>Nick:</label> I’m a partner at philosophie. We’re a software consultancy specializing in designing and developing web applications for clients, ranging from early-stage startups to large enterprises. Personally, I’ve been building web software for the past decade.</p>
+			<p><label>Dan:</label> What sorts of clients typically require ‘in-app accounting’ functionality?<p>
+			<p><label>Nick:</label> Any company dealing with a large number of transactions. In my experience, mostly e-commerce companies.</p>
+			<p><label>Dan:</label> What is the main reason they build ‘in-app accounting’?</p>
+			<p><label>Nick:</label> Businesses tend to manage their accounting manually for as long as possible, pulling CSV data to run reports and manage accounts offline. However, as a business scales, whether it be more transactions between users or more partners becoming involved, really any substantial increase in volume, you’re faced with the decision to either hire more accountants to manage this higher volume or invest in automating the accounting-related tasks and build in-app accounting functionality.</p>
+			<p><label>Dan:</label> What is ‘in-app accounting’? What does it do?</p>
+			<p><label>Nick:</label> Essentially it manages the effect of transactions on involved accounts. For example, as an order is placed, ‘in-app accounting’ may be responsible for dividing up that order among multiple partner accounts based on a predetermined, or sometimes variable, revenue share agreement. It should also be able to generate reports on that data in ways that are useful for the accounting and business teams as well as investors.</p>
+			<p><label>Dan:</label> How do you do this today? How much developer time does it take?</p>
+			<p><label>Nick:</label> Most of the serious in-app accounting implementations I’ve seen and worked on have been custom built from the ground up. The time and resources required vary wildly depending on the needs of each business… I’d say on average you should be prepared to invest 2 months and 1 or 2 developers to get it done right.</p>
+			<p><label>Dan:</label> What are the ongoing maintenance requirements for a DIY accounting solution like this?</p>
+			<p><label>Nick:</label> Pretty much the same as any custom software: Server maintenance, constantly increasing data storage requirements, developer resources to handle bug fixes and technical debt like that…</p>
+			<p><label>Dan:</label> We’ve talked about using Subledger instead of building your own solution, what do you see the benefits of this approach being?</p>
+			<p><label>Nick:</label> Implementing a pre-built solution like Subledger could save your entire team a whole lot of time. Building custom solutions requires a lot of coordination and commitment from the whole team (not just the devs) to ensure the resulting system performs as needed. With a service like Subledger that could meet the needs of the accounting team and handle the financial subtleties of the business, you can build, launch, and iterate your product faster—saving your resources to focus on what really matters: the user.</p>
+			</div>
+		</div>
+	</div>
+</article>
+
+<!-- footer -->
+<footer class="container-fluid" id="footer">
+  <div class="row">
+      <div class="col-sm-12 text-center">
+          <a onclick="$('body').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+          	<p>
+              <i class="fa fa-long-arrow-up"></i>
+           </p>
+           <p>
+           	Back to Top
+          </p>
+          </a>
+          <p class="small">
+            &copy; 2014 Subledger
+          </p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+

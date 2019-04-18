@@ -1,0 +1,60 @@
+  <!-- Disqus: Insert between <BODY> tags -->
+  <script id="dsq-count-scr" src="//boocx.disqus.com/count.js" async></script>
+
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var disqus_url = 'http://www.subledger.com{{ page.url }}'; /* '{{post.id}}'; */
+  var disqus_identifier = '93 http://subledger.com/?p=93';
+  var disqus_container_id = 'disqus_thread';
+  var disqus_domain = 'disqus.com';
+  var disqus_shortname = 'boocx';
+  var disqus_title = "{{ page.title }}";
+  var disqus_config = function () {
+  var config = this; // Access to the config object
+
+  /*
+  All currently supported events:
+  * preData — fires just before we request for initial data
+  * preInit - fires after we get initial data but before we load any dependencies
+  * onInit  - fires when all dependencies are resolved but before dtpl template is rendered
+  * afterRender - fires when template is rendered but before we show it
+  * onReady - everything is done
+  */
+
+  config.callbacks.preData.push(function() {
+  // clear out the container (its filled for SEO/legacy purposes)
+  document.getElementById(disqus_container_id).innerHTML = '';
+  });
+  config.callbacks.onReady.push(function() {
+  // sync comments in the background so we don't block the page
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = '?cf_action=sync_comments&post_id=93'; /* '{{post.id}} or What do we do here?'; */
+
+  var firstScript = document.getElementsByTagName( "script" )[0];
+  firstScript.parentNode.insertBefore(script, firstScript);
+  });
+  };
+  var facebookXdReceiverPath = 'http://subledger.com/wp-content/plugins/disqus-comment-system/xd_receiver.htm';
+  /* ]]> */ /* 'This looks Facebook and Wordpress related? Is it needed'; */
+  </script>
+
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var DsqLocal = {
+  'trackbacks': [
+  ],
+  'trackback_url': "http://www.subledger.com{{ page.url }}" };
+  /* ]]> */
+  </script>
+
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = 'http' + '://' + disqus_shortname + '.' + 'disqus.com' + '/embed.js?pname=wordpress&pver=2.73';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+  /* ]]> */
+  </script>

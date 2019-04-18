@@ -1,0 +1,40 @@
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Subledger | {% if page.title %}{{ page.title }}{% endif %}</title>
+
+	<meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+
+	<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+	<!-- Typekit Fonts -->
+	<script src="https://use.typekit.net/quh0hdu.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+
+	<!-- CSS & Bootstrap -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ site.baseurl }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{{ site.baseurl }}/bower_components/bootstrap/dist/css/custom.css">
+
+	<!-- Fontawesome JavaScript-->
+	<link rel="stylesheet" href="{{ site.baseurl }}/bower_components/font-awesome/css/font-awesome.min.css">
+
+	<!-- AnimateScoll JavaScript-->
+	<script src="{{ site.baseurl }}/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="{{ site.baseurl }}/bower_components/animatescroll/animatescroll.js"></script>
+
+	<!-- Bootstrap JavaScript: Needs to load last or else mobile menu fails! -->
+	<script src="{{ site.baseurl }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    {% if page.url == 'blog/index.html' %}
+    {% else %}
+
+	<!-- Addthis JavaScript -->
+    <script>var addthis_config = {"data_track_addressbar":true};</script>
+	<script src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4eee2aa859a7846d"></script>
+    {% endif %}
+
+</head>

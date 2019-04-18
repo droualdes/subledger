@@ -1,0 +1,63 @@
+Issues
+
+***
+
+Location: _layouts/post.html
+Subject: Page Identifier issue.
+
+Line 50:
+  var disqus_identifier = '87 http://subledger.com/?p=87';
+
+Line 75:
+  script.src = '?cf_action=sync_comments&post_id=87';
+
+***
+
+Location: _layouts/post.html
+Subject: disqus_forum_shortname needs to change from boocx to subledger in the disqus admin page before launch and adjustments made to reflect this as shown below.
+
+Line 53:
+  var disqus_shortname = 'boocx';
+
+NEEDS TO BECOME:
+
+Line 53:
+  var disqus_shortname = 'subledger';
+
+Can we change this now on the existing published site, so I test new site?
+
+***
+
+Location: _layouts/post.html
+Subject: How do I get syntax to match literal back slashes as shown below?
+
+Line 91:
+  'trackback_url': "http:\/\/subledger.com\/blog\/cryptocurrency-accounting\/trackback\/"    };
+
+***
+
+Location: _layouts/post.html
+Subject: Is this code or line necessary? It shows wordpress and we aren't using that.
+
+Line 101:
+
+  dsq.src = 'http' + '://' + disqus_shortname + '.' + 'disqus.com' + '/embed.js?pname=wordpress&pver=2.73';
+
+I JUST TOOK OUT EVERYTHING AFTER js? meaning I eliminated pname=wordpress&pver=2.73
+
+See this site:
+
+https://craftcms.com/docs/templating/integrating-disqus?utm_campaign=Craft%2BLink%2BList&utm_medium=web&utm_source=Craft_Link_List_7
+
+***
+
+Location: _layouts/post.html
+Subject: How do I get syntax to match literal back slashes as shown below?
+
+Line 81:
+  var facebookXdReceiverPath = 'http://subledger.com/wp-content/plugins/disqus-comment-system/xd_receiver.htm';
+
+This seems to be related to facebook and Wordpress.
+
+***
+

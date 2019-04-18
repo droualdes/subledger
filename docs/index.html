@@ -1,0 +1,1774 @@
+---
+layout: default
+title: Docs
+description: Subledger Docs
+---
+	<section class="container docs top-spacer">
+		<div class="row">
+			
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h2 class="text-center">
+					Table of Contents
+				</h2>
+				<ul>
+					<li>
+						<a href="{{ site.baseurl }}{{ page.url }}#intro" onclick="$('#intro').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+							Intro
+						</a>
+					</li>
+					<li>
+						<a href="{{ site.baseurl }}{{ page.url }}#authetication" onclick="$('#authetication').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+							Authetication
+						</a>
+					</li>
+					<li>
+						<a href="{{ site.baseurl }}{{ page.url }}#createanorg" onclick="$('#createanorg').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+							Create an Org
+						</a>
+					</li>
+					<li>
+						<a href="{{ site.baseurl }}{{ page.url }}#createabook" onclick="$('#createabook').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+							Create a Book
+						</a>
+					</li>
+					<li>
+						<a href="{{ site.baseurl }}{{ page.url }}#createaccountcategories" onclick="$('#createaccountcategories').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+							Create Account Categories
+						</a>
+					</li>
+					<li>
+						<a href="{{ site.baseurl }}{{ page.url }}#createaccounts" onclick="$('#createaccounts').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+							Create Accounts
+						</a>
+					</li>
+					<li>
+						<a href="{{ site.baseurl }}{{ page.url }}#postjournalentries" onclick="$('#postjournalentries').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+							Post Journal Entries
+						</a>
+					</li>
+					<li>
+						<a href="{{ site.baseurl }}{{ page.url }}#accountlevelreporting" onclick="$('#accountlevelreporting').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+							Account Level Reporting
+						</a>
+					</li>
+					<li>
+						<a href="{{ site.baseurl }}{{ page.url }}#setupglobalreporting" onclick="$('#setupglobalreporting').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+							Setup Global Reporting
+						</a>
+					</li>
+					<li>
+						<a href="{{ site.baseurl }}{{ page.url }}#produceaglobalreport" onclick="$('#produceaglobalreport').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+							Produce a Global Report
+						</a>
+					</li>
+			</ul>
+			</article>
+
+			<!-- Docs -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left" id="intro">
+				<h2 class="text-center">
+					Intro
+				</h2>
+					<p>
+						The best way to understand Subledger is to see it in action.
+					</p>
+					<p>
+						Imagine you’re building a pay-per-use newspaper reader called Payper (check it out at 
+						<a href="https://payper.io" target="_blank">Payper.io</a>). Payper will enable users to read articles from any publication for 0.10c per page.
+					</p>
+					<p>
+						Here are the transactions that Payper needs to handle:
+					</p>
+					<p>
+						<strong>
+							Re-charge: 
+						</strong>
+						$10 gets charged to the customer's credit card and is added to their Payper account balance.
+					</p>
+					<p>
+						<strong>Read: </strong>Customer reads a page, 0.10c gets deducted from their account balance, 0.08c gets recorded as payable to the publisher (e.g New York Times) and 0.02c gets added to Payper's revenue for the month.
+					</p>
+					<p>
+						We can use payment APIs like Balanced, Stripe and BrainTree to charge the user’s credit card and payout to publishers. For everything else we can use Subledger.
+					</p>
+					<p>
+						Now let's get Payper set up in Subledger!
+					</p>
+					<p>
+						These docs use generic IDs that will work, but  we suggest creating your own IDs and using them instead.
+					</p>
+					<p>
+						You can also check out a complete listing of our API endpoints <a href="https://api.subledger.com/v2/index.html" target="_blank">here</a>.
+					</p>
+			</article>
+
+			<!-- Authentication -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left" id="authetication">
+				<h2 class="text-center">
+					Authentication
+				</h2>
+				<p>
+					Create an Identity and store your ‘key_id’ and ‘secret’ for future calls.
+				</p>
+				<p>
+					Throughout these docs we refer to 'active_*_id' as '*_id'. For example 'active_key_id' is referred to as 'key_id'
+				</p>
+			</article>
+
+			<!-- Authentication CODE-->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+			<pre>
+EXAMPLE REQUEST
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"email": "me@payper.io",
+		"description": "payer",
+		"reference": "http://payper.io"
+}' \
+https://api.subledger.com/v1/identities
+
+EXAMPLE RESPONSE
+{
+		"active_identity": {
+				"id": "VEt7WZdKDR0yf1X72MLX81",
+				"email": "me@payper.io",
+				"description": "payer",
+				"reference": "http://payper.io",
+				"version": 1
+		},
+		"active_key": {
+				"id": "0sdsdr2dvCTu1ZKneQBDyl",
+				"identity": "VEt7WZdKDR0yf1X72MLX81",
+				"secret": "ZJmnsty6mzBZEyvViXpbW3"
+		}
+}</pre>
+			</article>
+
+			<!-- Create an Org -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-center" id="createanorg">
+				<h2>
+					Create an Org
+				</h2>
+				<p>
+					Create an Org and store your org_id for future calls.
+				</p>
+			</article>
+
+
+
+			<!-- Org Details -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Org details
+				</h3>
+				<p>
+					Description: Payper
+				</p>
+				<p>
+					Reference: <a href="http://payper.io" target="_blank">http://payper.io</a>
+				</p>
+			</article>
+
+			<!-- Create an Org CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+			<pre>
+DEFINITION
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"description": "payer.io",
+		"reference": "http://payper.io"
+}' \
+-u key_id:secret https://api.subledger.com/v1/orgs
+
+EXAMPLE REQUEST
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"description": "payer.io",
+		"reference": "http://payper.io"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com/v1/orgs
+
+EXAMPLE RESPONSE
+{
+		"active_org": {
+				"id": "WQQF5ppPt62EAMmPnNkx42",
+				"description": "payer.io",
+				"reference": "http://payper.io",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Create a Book -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-center" id="createabook">
+				<h2>
+					Create a Book
+				</h2>
+				<p>
+					Create a Book for your USD accounts and store your book_id for future calls.
+				</p>
+			</article>
+
+
+
+			<!-- Book details -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>Book details</h3>
+				<p>
+					Description: Payper
+				</p>
+				<p>
+					Reference: <a href="http://payper.io" target="_blank">http://payper.io</a>
+				</p>
+			</article>
+
+
+
+			<!-- Book details CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+			<pre>
+DEFINITION
+	 curl -X POST -H "Content-Type: application/json" -d \
+	 '{
+			 "description": "Payper (USD)",
+			 "reference": "http://payper.io"
+	 }' \
+	 -u key_id:secret https://api.subledger.com/v1/orgs/org_id/books
+EXAMPLE REQUEST
+	 curl -X POST -H "Content-Type: application/json" -d \
+	 '{
+			 "description": "Payper (USD)",
+			 "reference": "http://payper.io"
+	 }' \
+	 -u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books
+EXAMPLE RESPONSE
+	 {
+			 "active_book": {
+					 "id": "MKscbFJDlyd8dX6gAaTNv7",
+					 "org": "WQQF5ppPt62EAMmPnNkx42",
+					 "description": "Payper (USD)",
+					 "reference": "http://payper.io",
+					 "version": 1
+			 }
+	 }</pre>
+			</article>
+
+
+
+			<!-- Create Account Categories -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left" id="createaccountcategories">
+				<h2 class="text-center">
+					Create Account Categories
+				</h2>
+				<p>
+					Categories are used to group accounts for reporting.
+				</p>
+				<p>
+			</article>
+
+
+
+			<!-- Report Structure -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+					<h3>Report Structure</h3>
+				<p>
+					In this example we are going to put accounts into the categories and subcategories required to render this basic report for the Payper business:
+				</p>
+				<p>
+					Assets (category)
+				</p>
+				<ul>
+					<li>
+						Cash (subcategory)
+					</li>
+					<li>
+						Cash (account)
+					</li>
+				</ul>
+				<p>
+					Liabilities (category)
+				</p>
+				<ul>
+					<li>
+						AP (subcategory)
+					</li>
+					<li>
+						AP/Publisher (account)
+					</li>
+					<li>
+						Defered Revenue (subcategory)
+					</li>
+					<li>
+						Defered Revenue/User (account)
+					</li>
+				</ul>
+				<p>
+					Now let’s create the categories and subcategories.
+				</p>
+			</article>
+
+
+
+			<!-- Report Structure CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+DEFINITION 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"description": "Assets",
+		"reference": "http://payper.io/assets",
+		"normal_balance": "debit"
+}' \
+-u key_id:secret 
+https://api.subledger.com:443/v1/orgs/org_id/books/book_id/categories</pre>
+			</article>
+
+
+
+			<!-- Assets -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+					<h3>
+						Assets
+					</h3>
+					<p>
+						Create Assets category.
+					</p>
+			</article>
+
+
+
+			<!-- Assets CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"description": "Assets",
+		"reference": "http://payper.io/assets",
+		"normal_balance": "debit"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/categories 
+
+EXAMPLE RESPONSE 
+{
+		"active_category": {
+				"id": "zlpLcIqTK1fkvgL6inpVt5",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Assets",
+				"reference": "http://payper.io/assets",
+				"normal_balance": "debit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Cash -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Cash
+				</h3>
+				<p>
+					Create Cash category.
+				</p>
+			</article>
+
+
+
+			<!-- Cash CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"description": "Cash",
+		"reference": "http://payper.io/cash",
+		"normal_balance": "debit"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/categories 
+
+EXAMPLE RESPONSE 
+{
+		"active_category": {
+				"id": "y2uiEGVUUnrijQwxdFl783",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Cash",
+				"reference": "http://payper.io/cash",
+				"normal_balance": "debit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Liabilities -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Liabilities
+				</h3>
+				<p>
+					Create Liabilities category.
+				</p>
+			</article>
+
+
+
+			<!-- Liabilities CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"description": "Liabilities",
+		"reference": "http://payper.io/liabilities",
+		"normal_balance": "credit"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/categories 
+
+EXAMPLE RESPONSE 
+{
+		"active_category": {
+				"id": "0F0MoHntRaZadufuGcDyvt",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Liabilities",
+				"reference": "http://payper.io/liabilities",
+				"normal_balance": "credit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Accounts Payable -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Accounts Payable
+				</h3>
+				<p>
+					Create Accounts Payable category.
+				</p>
+			</article>
+
+
+
+			<!-- Accounts Payable CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"description": "Accounts Payable",
+		"reference": "http://payper.io/ap",
+		"normal_balance": "credit"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/categories 
+
+EXAMPLE RESPONSE 
+{
+		"active_category": {
+				"id": "PTVW9Ewi7Rzu0gfVnHE093",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Accounts Payable",
+				"reference": "http://payper.io/ap",
+				"normal_balance": "credit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Deferred Revenue Payable -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Deferred Revenue Payable
+				</h3>
+				<p>
+					Create Deferred Revenue category.
+				</p>
+			</article>
+
+
+
+			<!-- Deferred Revenue CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"description": "Deferred Revenue",
+		"reference": "http://payper.io/def_rev",
+		"normal_balance": "credit"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/categories 
+
+EXAMPLE RESPONSE 
+{
+		"active_category": {
+				"id": "R0rllhyrQBV1tWJnsVULN3",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Deferred Revenue",
+				"reference": "http://payper.io/def_rev",
+				"normal_balance": "credit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Create Accounts -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left" id="createaccounts">
+				<h2>
+					Create Accounts
+				</h2>
+				<p>
+					Accounts will be used to record the location/state of money in your application.
+				</p>
+				<p>
+					We will create accounts and attach them to categories as specified in the report structure we laid out above.
+				</p>
+				<p>
+					<strong>Global accounts</strong>
+				</p>
+				<p>
+					The Payper business has 2 global accounts: ‘Cash’ and ‘Revenue’
+				</p>
+				<p>
+					Most applications have a few ‘one off’ global accounts and accounts for each buyer/seller in the application.
+				</p>
+			</article>
+
+
+
+			<!-- Create Accounts CODE -->
+				<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+					<pre>
+DEFINITION
+	 curl -X POST -H "Content-Type: application/json" -d \
+	 '{
+		 "description": "Cash",
+		 "reference": "http://payper.io",
+		 "normal_balance": "debit"
+	 }' \
+	 -u key_id:secret https://api.subledger.com/v1/orgs/org_id/books/book_id/accounts</pre>
+			</article>
+
+
+
+			<!-- Cash Accounts -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Cash Accounts
+				</h3>
+				<p>
+					Description: Payper
+				</p>
+				<p>
+					Reference: <a href="http://payper.io" target="_blank">http://payper.io</a>
+				</p>
+			</article>
+
+
+
+			<!-- Cash Accounts CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST
+	 curl -X POST -H "Content-Type: application/json" -d \
+	 '{
+		 "description": "Cash",
+		 "reference": "http://payper.io",
+		 "normal_balance": "debit"
+	 }' \
+	 -u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/accounts
+EXAMPLE RESPONSE
+	 {
+			 "active_account": {
+					 "id": "Z8KjRhQJy0LAGlBObU6cq1",
+					 "book": "MKscbFJDlyd8dX6gAaTNv7",
+					 "description": "Cash",
+					 "reference": "http://payper.io",
+					 "normal_balance": "debit",
+					 "version": 1
+			 }
+	 }</pre>
+			</article>
+
+
+
+			<!-- Revenue Accounts -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Revenue Accounts
+				</h3>
+				<p>
+					Description: Payper
+				</p>
+				<p>
+					Reference: <a href="http://payper.io" target="_blank">http://payper.io</a>
+				</p>
+			</article>
+
+
+
+			<!-- Revenue Accounts CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST
+	 curl -X POST -H "Content-Type: application/json" -d \
+	 '{
+		 "description": "Payper Revenue",
+		 "reference": "http://payper.io",
+		 "normal_balance": "credit"
+	 }' \
+	 -u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/accounts
+EXAMPLE RESPONSE
+	 {
+			 "active_account": {
+					 "id": "0TwySSKVG7uk8GETREn1Sc",
+					 "book": "MKscbFJDlyd8dX6gAaTNv7",
+					 "description": "Payper Revenue",
+					 "reference": "http://payper.io",
+					 "normal_balance": "credit",
+					 "version": 1
+			 }
+	 }</pre>
+			</article>
+
+
+
+			<!-- User Accounts -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					User Accounts
+				</h3>
+				<p>
+					For each Payper user we need to create a ‘Deferred Revenue’ account.
+				</p>
+			</article>
+
+
+
+			<!-- Deferred Revenue Account -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Deferred Revenue Account
+				</h3>
+				<p>
+					Description: Deferred Revenue (john@smith.com)
+				</p>
+				<p>
+					Reference: <a href="http://payper.io/user_profile" target="_blank">http://payper.io/user_profile</a>
+				</p>
+			</article>
+
+
+
+			<!-- Deferred Revenue Account CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST
+	 curl -X POST -H "Content-Type: application/json" -d \
+	 '{
+		 "description": "Deferred Revenue (john@smith.com)",
+		 "reference": "http://payper.io/johnsmith",
+		 "normal_balance": "credit"
+	 }' \
+	 -u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/accounts
+EXAMPLE RESPONSE
+	 {
+			 "active_account": {
+					 "id": "0sjv5Zr7VG5DzMSHruOe28",
+					 "book": "MKscbFJDlyd8dX6gAaTNv7",
+					 "description": "Deferred Revenue (john@smith.com)",
+					 "reference": "http://payper.io/johnsmith",
+					 "normal_balance": "credit",
+					 "version": 1
+			 }
+	 }</pre>
+			</article>
+
+
+
+			<!-- Publisher Accounts -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Publisher Accounts
+				</h3>
+				<p>
+					For each Payper publisher we need to create an ‘Accounts Payable’ account.
+				</p>
+			</article>
+
+
+
+			<!-- Accounts Payable account -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Accounts Payable account
+				</h3>
+				<p>
+					Description: Accounts Payable (Publisher_Name)
+				</p>
+				<p>
+					Reference: <a href="Reference: http://payper.io/publisher_profile" target="_blank">http://payper.io/publisher_profile</a>
+				</p>
+			</article>
+
+
+
+			<!-- Accounts Payable account CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST
+	 curl -X POST -H "Content-Type: application/json" -d \
+	 '{
+		 "description": "Accounts Payable (Publisher_Name)",
+		 "reference": "http://payper.io/publisher_profile",
+		 "normal_balance": "credit"
+	 }' \
+	 -u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/accounts
+	 
+EXAMPLE RESPONSE
+	 {
+			 "active_account": {
+					 "id": "UH7Xr7tr1RM9zHYNzhme31",
+					 "book": "MKscbFJDlyd8dX6gAaTNv7",
+					 "description": "Accounts Payable (Publisher_Name)",
+					 "reference": "http://payper.io/publisher_profile",
+					 "normal_balance": "credit",
+					 "version": 1
+			 }
+	 }</pre>
+			</article>
+
+
+
+			<!-- Attach Cash Account to Cash Category -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Attach Cash Account to Cash Category
+				</h3>
+			</article>
+
+
+
+			<!-- Accounts Payable account CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+DEFINITION
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"account": "account_id"
+}' \
+-u key_id:secret https://api.subledger.com:443/v1/orgs/org_id/books/book_id/categories/category_id/attach
+
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"account": "Z8KjRhQJy0LAGlBObU6cq1"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/categories/y2uiEGVUUnrijQwxdFl783/attach
+
+EXAMPLE RESPONSE
+{
+		"active_account": {
+				"id": "Z8KjRhQJy0LAGlBObU6cq1",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Cash",
+				"reference": "http://cash.com",
+				"normal_balance": "debit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Attach Deferred Revenue account to the Deferred Revenue category -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Attach Deferred Revenue account to the Deferred Revenue category
+				</h3>
+				<p>
+					We attach each user’s Deferred Revenue account to the Deferred Revenue category.
+				</p>
+			</article>
+
+
+
+			<!-- Attach Deferred Revenue account to the Deferred Revenue category -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"account": "0sjv5Zr7VG5DzMSHruOe28"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/categories/R0rllhyrQBV1tWJnsVULN3/attach
+
+EXAMPLE RESPONSE
+{
+		"active_account": {
+				"id": "0sjv5Zr7VG5DzMSHruOe28",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Deferred Revenue (John@smith.com)",
+				"reference": "http://payper.io/johnsmith",
+				"normal_balance": "credit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Attach publisher’s Accounts Payable account to the Accounts Payable category -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Attach publisher’s Accounts Payable account to the Accounts Payable category
+				</h3>
+				<p>
+					We attach each user’s Account Payable account to the Account Payable category.
+				</p>
+			</article>
+
+
+
+			<!-- Attach Deferred Revenue account to the Deferred Revenue category -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"account": "UH7Xr7tr1RM9zHYNzhme31"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/categories/PTVW9Ewi7Rzu0gfVnHE093/attach
+
+EXAMPLE RESPONSE
+{
+		"active_account": {
+				"id": "UH7Xr7tr1RM9zHYNzhme31",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Accounts Payable (NewYorkTimes)",
+				"reference": "http://newyorktimes.com",
+				"normal_balance": "credit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Post Journal Entries -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left" id="postjournalentries">
+				<h2>
+					Post Journal Entries
+				</h2>
+				<p>
+					Money movement between accounts is recorded by posting a double-entry journal entry. The 'double' entry records which accounts the money moved from and to.
+				</p>
+				<p>
+					Subledger requires time and date in <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO_8601 format</a>
+				</p>
+			</article>
+
+
+
+			<!-- Re-Charge Journal Entry -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Re-Charge Journal Entry
+				</h3>
+				<p>
+					Every time a user adds $10 to their account balance we need to post this journal entry:
+				</p>
+				<ul>
+					<li>
+						Debit [10.00]
+					</li>
+					<li>
+						Credit DeferredRevenue(john@smith.com)[10.00]
+					</li>
+				</ul>
+			</article>
+
+			<!-- Re-Charge Journal Entry CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+DEFINITION
+	 curl -X POST -H "Content-Type: application/json" -d \
+	 '{
+		 "effective_at": "Time-Date",
+		 "description": "Re-Charge(john@smith.com",
+		 "reference": "http://payper.io/payment_receipt",
+		 "lines": [
+			 {
+				 "account": "account_id",
+				 "value": {
+					 "type": "debit",
+					 "amount": "10.00"
+				 }
+			 },
+			 {
+				 "account": "account_id",
+				 "value": {
+					 "type": "credit",
+					 "amount": "10.00"
+				 }
+			 }
+		 ]
+	 }' \
+	 -u key_id:secret https://api.subledger.com/v1/orgs/org_id/books/book_id/journal_entries/create_and_post
+					
+EXAMPLE REQUEST
+	 curl -X POST -H "Content-Type: application/json" -d \
+	 '{
+		 "effective_at": "2013-09-29T10:40Z",
+		 "description": "Re-Charge(john@smith.com)",
+		 "reference": "http://payper.io/payment_receipt",
+		 "lines": [
+			 {
+				 "account": "Z8KjRhQJy0LAGlBObU6cq1",
+				 "value": {
+					 "type": "debit",
+					 "amount": "10.00"
+				 }
+			 },
+			 {
+				 "account": "0sjv5Zr7VG5DzMSHruOe28",
+				 "value": {
+					 "type": "credit",
+					 "amount": "10.00"
+				 }
+			 }
+		 ]
+	 }' \
+	 -u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/journal_entries/create_and_post
+					
+EXAMPLE RESPONSE
+	 {
+			 "posting_journal_entry": {
+					 "id": "PBa462iMYV6VrjaGiJINx6",
+					 "book": "MKscbFJDlyd8dX6gAaTNv7",
+					 "effective_at": "2013-09-29T10:40:00.000Z",
+					 "description": "Re-Charge(john@smith.com)",
+					 "reference": "http://payper.io/payment_receipt",
+					 "version": 1
+			 }
+	 }</pre>
+			</article>
+
+
+
+			<!-- Usage Journal Entry -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Usage Journal Entry
+				</h3>
+				<p>
+					Every time a user reads a page we need to post this journal entry:
+				</p>
+				<ul>
+					<li>
+						Debit DeferredRevenue(john@smith.com)[0.10]
+					</li>
+					<li>
+						Credit AccountsPayable (Publisher_Name)[0.08]
+					</li>
+					<li>
+						Credit PayperRevenue[0.02]
+					</li>
+				</ul>
+			</article>
+
+			<!-- Usage Journal Entry CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST
+	 curl -X POST -H "Content-Type: application/json" -d \
+	 '{
+			 "effective_at": "2013-09-29T10:40Z",
+			 "description": "PageRead(john@smith.com)",
+			 "reference": "http://payper.io/article",
+			 "lines": [{
+					 "account": "0sjv5Zr7VG5DzMSHruOe28",
+					 "value": {
+							 "type": "debit",
+							 "amount": "0.10"
+					 }
+			 }, {
+					 "account": "UH7Xr7tr1RM9zHYNzhme31",
+					 "value": {
+							 "type": "credit",
+							 "amount": "0.08"
+					 }
+			 }, {
+					 "account": "0TwySSKVG7uk8GETREn1Sc",
+					 "value": {
+							 "type": "credit",
+							 "amount": "0.02"
+					 }
+			 }]
+	 }' \
+	 -u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/journal_entries/create_and_post
+EXAMPLE RESPONSE
+	 {
+			 "posting_journal_entry": {
+					 "id": "didYh5QvpnkTRubaVwAj87",
+					 "book": "MKscbFJDlyd8dX6gAaTNv7",
+					 "effective_at": "2013-09-29T10:40:00.000Z",
+					 "description": "PageRead(john@smith.com)",
+					 "reference": "http://payper.io/article",
+					 "version": 1
+			 }
+	 }</pre>
+			</article>
+
+
+
+			<!-- Account Level Reporting -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left" id="accountlevelreporting">
+				<h2>
+					Account Level Reporting
+				</h2>
+				<p>
+					<strong>Account Level Reporting</strong> is useful for showing individual customers their balance and transaction history (we call this the ‘bank view’).
+				</p>
+			</article>
+
+
+
+			<!-- Account Balance -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Account Balance
+				</h3>
+				<p>
+					This is how we show Payper users and publishers their account balance with Payper
+				</p>
+			</article>
+
+
+
+			<!-- Account Balance CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+DEFINITION
+	 curl -X GET -H "Content-Type: application/json" \
+	 -u key_id:secret "https://api.subledger.com/v1/orgs/org_id/books/book_id/accounts/account_id/balance?at=2013-09-29T10%3A40Z"
+	 
+EXAMPLE REQUEST
+	 curl -X GET -H "Content-Type: application/json" \
+	 -u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 "https://api.subledger.com/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/accounts/0sjv5Zr7VG5DzMSHruOe28/balance?at=2013-09-29T10%3A40Z"
+EXAMPLE RESPONSE
+	 {
+			 "balance": {
+					 "debit_value": {
+							 "type": "debit",
+							 "amount": "0.2"
+					 },
+					 "credit_value": {
+							 "type": "credit",
+							 "amount": "20"
+					 },
+					 "value": {
+							 "type": "credit",
+							 "amount": "19.8"
+					 }
+			 }
+	 }</pre>
+			</article>
+
+
+
+			<!-- Transaction history -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Transaction history
+				</h3>
+				<p>
+					This is how we show users and publishers their transaction history.
+				</p>
+			</article>
+
+
+
+			<!-- Transaction history CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+DEFINITION
+	 curl -X GET -H "Content-Type: application/json" \
+	 -u key_id:secret "https://api.subledger.com/v1/orgs/org_id/books/book_id/accounts/account_id/lines?action=starting&effective_at=2013-09-29&limit=3"
+	 
+EXAMPLE REQUEST
+	 curl -X GET -H "Content-Type: application/json" \
+	 -u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 "https://api.subledger.com/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/accounts/0sjv5Zr7VG5DzMSHruOe28/lines?action=starting&effective_at=2013-09-29&limit=3"
+	 
+EXAMPLE RESPONSE
+	 {
+			 "posted_lines": [{
+					 "id": "6qdOEpkiORNeNe20wiROh2",
+					 "journal_entry": "F1woBZ1udNwdwdJYWNJ0s3",
+					 "account": "0sjv5Zr7VG5DzMSHruOe28",
+					 "description": "PageRead(user@gmail.com)",
+					 "reference": "http://payper.io/article",
+					 "value": {
+							 "type": "debit",
+							 "amount": "0.1"
+					 },
+					 "order": "0001.00",
+					 "version": 1,
+					 "effective_at": "2013-09-29T10:40:00.000Z",
+					 "posted_at": "2013-09-30T16:58:41.471Z"
+			 }, {
+					 "id": "cQWJx6Zkkjo5FdfktkHAo6",
+					 "journal_entry": "MSfSShpo52dl4EgasCAmZ3",
+					 "account": "0sjv5Zr7VG5DzMSHruOe28",
+					 "description": "Re-Charge(user@gmail.com)",
+					 "reference": "http://payper.io/payment_receipt",
+					 "value": {
+							 "type": "credit",
+							 "amount": "10"
+					 },
+					 "order": "0002.00",
+					 "version": 1,
+					 "effective_at": "2013-09-29T10:40:00.000Z",
+					 "posted_at": "2013-09-30T16:35:08.885Z"
+			 }, {
+					 "id": "KBSMBwkQRDB2h3cdZZx5v2",
+					 "journal_entry": "PBa462iMYV6VrjaGiJINx6",
+					 "account": "0sjv5Zr7VG5DzMSHruOe28",
+					 "description": "Re-Charge(user@gmail.com)",
+					 "reference": "http://payper.io/payment_receipt",
+					 "value": {
+							 "type": "credit",
+							 "amount": "10"
+					 },
+					 "order": "0002.00",
+					 "version": 1,
+					 "effective_at": "2013-09-29T10:40:00.000Z",
+					 "posted_at": "2013-09-30T16:40:56.259Z"
+			 }]
+	 }</pre>
+			</article>
+
+
+
+			<!-- Global Reporting -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left" id="setupglobalreporting">
+				<h2>
+					Setup Global Reporting
+				</h2>
+				<p>
+					<strong>Global Reporting</strong> aggregates account balances into category balances and provides a financial snapshot of all commerce across your application. This is useful for internal reports and answering the question of ‘are we making any money yet?’
+				</p>
+			</article>
+
+
+
+			<!-- Create report -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Create report
+				</h3>
+			</article>
+
+
+
+			<!-- Create Report CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+DEFINITION
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"description": "My First Report",
+		"reference": "http://happy.com"
+}' \
+-u key_id:secret https://api.subledger.com:443/v1/orgs/org_id/books/book_id/reports
+
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"description": "My First Report",
+		"reference": "http://happy.com"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/reports
+
+EXAMPLE RESPONSE 
+{
+		"active_report": {
+				"id": "0auwD9kBd0XSLrRt2Pi8dh",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "My First Report",
+				"reference": "http://happy.com",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Specify the Report Structure -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Specify the Report Structure
+				</h3>
+				<p>
+					This is where we specify the parent-child relationship between categories and sub-categories.
+				</p>
+				<p>
+					<strong>Attach the Assets category to the report</strong>
+				</p>
+				<p>
+					Assets is a ‘parent’ category.
+				</p>
+			</article>
+
+
+
+			<!-- Specify the Report Structure CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+DEFINITION 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+	"category": "category_id"
+}' \
+-u key_id:secret https://api.subledger.com:443/v1/orgs/org_id/books/book_id/reports/active_report_id/attach
+
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+	"category": "zlpLcIqTK1fkvgL6inpVt5"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/reports/0auwD9kBd0XSLrRt2Pi8dh/attach
+
+EXAMPLE RESPONSE 
+{
+		"active_category": {
+				"id": "zlpLcIqTK1fkvgL6inpVt5",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Assets",
+				"reference": "http://payper.io/assets",
+				"normal_balance": "debit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Attach the Liabilities category to the report -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Attach the Liabilities category to the report
+				</h3>
+				<p>
+					Liabilities is a ‘parent’ category.
+				</p>
+			</article>
+
+
+
+			<!-- Attach the Liabilities category to the report CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+	"category": "0F0MoHntRaZadufuGcDyvt"
+}' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/reports/0auwD9kBd0XSLrRt2Pi8dh/attach
+
+EXAMPLE RESPONSE 
+{
+	"active_category": {
+		"id": "0F0MoHntRaZadufuGcDyvt",
+		"book": "MKscbFJDlyd8dX6gAaTNv7",
+		"description": "Liabilities",
+		"reference": "http://payper.io/liabilities",
+		"normal_balance": "credit",
+		"version": 1
+	}
+}</pre>
+			</article>
+
+
+
+			<!-- Attach sub-categories to the report -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Attach sub-categories to the report
+				</h3>
+				<p>
+					Attaching sub-categories to categories.
+				</p>
+			</article>
+
+
+
+			<!-- Attach the Liabilities category to the report CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+DEFINITION
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"category": "category_id",
+		"parent": "parent_category_id"
+}
+' \
+-u key_id:secret https://api.subledger.com:443/v1/orgs/org_id/books/book_id/reports/report_id/attach</pre>
+			</article>
+
+
+
+			<!-- Attach the Cash category to the report -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Attach the Cash category to the report
+				</h3>
+				<p>
+					Attaching the Cash sub-category to the Asset category.
+				</p>
+			</article>
+
+
+
+			<!-- Attach the Cash category to the report CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"category": "y2uiEGVUUnrijQwxdFl783",
+		"parent": "zlpLcIqTK1fkvgL6inpVt5"
+}
+' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/reports/0auwD9kBd0XSLrRt2Pi8dh/attach
+
+EXAMPLE RESPONSE 
+{
+		"active_category": {
+				"id": "y2uiEGVUUnrijQwxdFl783",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Cash",
+				"reference": "http://payper.io/cash",
+				"normal_balance": "debit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Attach the Accounts Payable category to the report -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Attach the Accounts Payable category to the report
+				</h3>
+				<p>
+					Attaching the Accounts Payable sub-category to the Liability category.
+				</p>
+			</article>
+
+
+
+			<!-- Attach the Accounts Payable category to the report CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"category": "PTVW9Ewi7Rzu0gfVnHE093",
+		"parent": "0F0MoHntRaZadufuGcDyvt"
+}
+' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/reports/0auwD9kBd0XSLrRt2Pi8dh/attach
+
+EXAMPLE RESPONSE 
+{
+		"active_category": {
+				"id": "PTVW9Ewi7Rzu0gfVnHE093",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Accounts Payable",
+				"reference": "http://payper.io/ap",
+				"normal_balance": "credit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Attaching the Deferred Revenue sub-category to the Liability category. -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Attach the Deferred Revenue category to the report
+				</h3>
+				<p>
+					Attaching the Deferred Revenue sub-category to the Liability category.
+				</p>
+			</article>
+
+
+
+			<!-- Attaching the Deferred Revenue sub-category to the Liability category. CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+EXAMPLE REQUEST 
+curl -X POST -H "Content-Type: application/json" -d \
+'{
+		"category": "R0rllhyrQBV1tWJnsVULN3",
+		"parent": "0F0MoHntRaZadufuGcDyvt"
+}
+' \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/reports/0auwD9kBd0XSLrRt2Pi8dh/attach
+
+EXAMPLE RESPONSE 
+{
+		"active_category": {
+				"id": "R0rllhyrQBV1tWJnsVULN3",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"description": "Deferred Revenue",
+				"reference": "http://payper.io/def_rev",
+				"normal_balance": "credit",
+				"version": 1
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Produce a Global Report -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left" id="produceaglobalreport">
+				<h2>
+					Produce a Global Report
+				</h2>
+			</article>
+
+
+
+			<!-- Render Report -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Render Report
+				</h3>
+				<p>
+					This is how we render a report.
+				</p>
+			</article>
+
+
+
+			<!-- Render Report CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+DEFINITION
+
+curl -X POST -H "Content-Type: application/json" \
+-u key_id:secret https://api.subledger.com:443/v1/orgs/org_id/books/book_id/reports/report_id/render?at=time_date
+
+
+EXAMPLE REQUEST
+
+curl -X POST -H "Content-Type: application/json" \
+-u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/reports/0auwD9kBd0XSLrRt2Pi8dh/render?at=2013-10-24T08%3A48%3A27-07%3A00
+
+EXAMPLE RESPONSE
+{
+		"building_report_rendering": {
+				"id": "YsW270UMMfUFWg4ojkZju7",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"report": "0auwD9kBd0XSLrRt2Pi8dh",
+				"description": "My First Report",
+				"reference": "http://happy.com",
+				"effective_at": "2013-10-24T15:48:27Z",
+				"total_accounts": 0,
+				"progress": {
+						"percentage": 0
+				},
+				"rendered_at": "2013-10-24T21:55:38.027Z"
+		}
+}</pre>
+			</article>
+
+
+
+			<!-- Retrieve Rendered Report -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<h3>
+					Render Report
+				</h3>
+				<p>
+					This is how we get back a rendered report from Subledger.
+				</p>
+			</article>
+
+
+
+			<!-- Retrieve Rendered Report CODE -->
+			<article class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+				<pre>
+DEFINITION
+
+curl -X GET -H "Content-Type: application/json" -u key_id:secret https://api.subledger.com:443/v1/orgs/org_id/books/book_id/report_renderings/building_report_rendering_id 
+
+
+EXAMPLE REQUEST
+
+curl -X GET -H "Content-Type: application/json" -u 0sdsdr2dvCTu1ZKneQBDyl:ZJmnsty6mzBZEyvViXpbW3 https://api.subledger.com:443/v1/orgs/WQQF5ppPt62EAMmPnNkx42/books/MKscbFJDlyd8dX6gAaTNv7/report_renderings/YsW270UMMfUFWg4ojkZju7
+
+
+EXAMPLE RESPONSE
+{
+		"completed_report_rendering": {
+				"id": "YsW270UMMfUFWg4ojkZju7",
+				"book": "MKscbFJDlyd8dX6gAaTNv7",
+				"report": "0auwD9kBd0XSLrRt2Pi8dh",
+				"description": "My First Report",
+				"reference": "http://happy.com",
+				"effective_at": "2013-10-24T15:48:27Z",
+				"total_accounts": 3,
+				"progress": {
+						"percentage": 100
+				},
+				"rendered_at": "2013-10-24T21:55:38.027Z",
+				"completed_at": "2013-10-24T21:55:41.927Z",
+				"categories": [{
+						"id": "zlpLcIqTK1fkvgL6inpVt5",
+						"book": "MKscbFJDlyd8dX6gAaTNv7",
+						"description": "Assets",
+						"reference": "http://payper.io/assets",
+						"normal_balance": "debit",
+						"version": 1,
+						"accounts": [],
+						"categories": [{
+								"id": "ew5BijuWEB9jgKuPAvabQ3",
+								"book": "MKscbFJDlyd8dX6gAaTNv7",
+								"description": "Accounts Receivable",
+								"reference": "http://payper.io/ar",
+								"normal_balance": "debit",
+								"version": 1,
+								"accounts": [],
+								"categories": [],
+								"warnings": ["category ew5BijuWEB9jgKuPAvabQ3 has no accounts"],
+								"balance": {
+										"debit_value": {
+												"type": "zero",
+												"amount": "0"
+										},
+										"credit_value": {
+												"type": "zero",
+												"amount": "0"
+										},
+										"value": {
+												"type": "zero",
+												"amount": "0"
+										}
+								}
+						}, {
+								"id": "y2uiEGVUUnrijQwxdFl783",
+								"book": "MKscbFJDlyd8dX6gAaTNv7",
+								"description": "Cash",
+								"reference": "http://payper.io/cash",
+								"normal_balance": "debit",
+								"version": 1,
+								"accounts": [{
+										"id": "Z8KjRhQJy0LAGlBObU6cq1",
+										"book": "MKscbFJDlyd8dX6gAaTNv7",
+										"description": "Cash",
+										"reference": "http://cash.com",
+										"normal_balance": "debit",
+										"version": 1,
+										"balance": {
+												"debit_value": {
+														"type": "debit",
+														"amount": "30"
+												},
+												"credit_value": {
+														"type": "zero",
+														"amount": "0"
+												},
+												"value": {
+														"type": "debit",
+														"amount": "30"
+												}
+										},
+										"warnings": []
+								}],
+								"categories": [],
+								"warnings": [],
+								"balance": {
+										"debit_value": {
+												"type": "debit",
+												"amount": "30"
+										},
+										"credit_value": {
+												"type": "zero",
+												"amount": "0"
+										},
+										"value": {
+												"type": "debit",
+												"amount": "30"
+										}
+								}
+						}],
+						"warnings": ["category zlpLcIqTK1fkvgL6inpVt5 has no accounts"],
+						"balance": {
+								"debit_value": {
+										"type": "debit",
+										"amount": "30"
+								},
+								"credit_value": {
+										"type": "zero",
+										"amount": "0"
+								},
+								"value": {
+										"type": "debit",
+										"amount": "30"
+								}
+						}
+				}, {
+						"id": "0F0MoHntRaZadufuGcDyvt",
+						"book": "MKscbFJDlyd8dX6gAaTNv7",
+						"description": "Liabilities",
+						"reference": "http://payper.io/liabilities",
+						"normal_balance": "credit",
+						"version": 1,
+						"accounts": [],
+						"categories": [{
+								"id": "PTVW9Ewi7Rzu0gfVnHE093",
+								"book": "MKscbFJDlyd8dX6gAaTNv7",
+								"description": "Accounts Payable",
+								"reference": "http://payper.io/ap",
+								"normal_balance": "credit",
+								"version": 1,
+								"accounts": [{
+										"id": "UH7Xr7tr1RM9zHYNzhme31",
+										"book": "MKscbFJDlyd8dX6gAaTNv7",
+										"description": "Accounts Payable (NewYorkTimes)",
+										"reference": "http://newyorktimes.com",
+										"normal_balance": "credit",
+										"version": 1,
+										"balance": {
+												"debit_value": {
+														"type": "zero",
+														"amount": "0"
+												},
+												"credit_value": {
+														"type": "credit",
+														"amount": "0.24"
+												},
+												"value": {
+														"type": "credit",
+														"amount": "0.24"
+												}
+										},
+										"warnings": []
+								}],
+								"categories": [],
+								"warnings": [],
+								"balance": {
+										"debit_value": {
+												"type": "zero",
+												"amount": "0"
+										},
+										"credit_value": {
+												"type": "credit",
+												"amount": "0.24"
+										},
+										"value": {
+												"type": "credit",
+												"amount": "0.24"
+										}
+								}
+						}, {
+								"id": "R0rllhyrQBV1tWJnsVULN3",
+								"book": "MKscbFJDlyd8dX6gAaTNv7",
+								"description": "Deferred Revenue",
+								"reference": "http://payper.io/def_rev",
+								"normal_balance": "credit",
+								"version": 1,
+								"accounts": [{
+										"id": "0sjv5Zr7VG5DzMSHruOe28",
+										"book": "MKscbFJDlyd8dX6gAaTNv7",
+										"description": "Deferred Revenue (John@smith.com)",
+										"reference": "http://payper.io/johnsmith",
+										"normal_balance": "credit",
+										"version": 1,
+										"balance": {
+												"debit_value": {
+														"type": "debit",
+														"amount": "0.3"
+												},
+												"credit_value": {
+														"type": "credit",
+														"amount": "30"
+												},
+												"value": {
+														"type": "credit",
+														"amount": "29.7"
+												}
+										},
+										"warnings": []
+								}],
+								"categories": [],
+								"warnings": [],
+								"balance": {
+										"debit_value": {
+												"type": "debit",
+												"amount": "0.3"
+										},
+										"credit_value": {
+												"type": "credit",
+												"amount": "30"
+										},
+										"value": {
+												"type": "credit",
+												"amount": "29.7"
+										}
+								}
+						}],
+						"warnings": ["category 0F0MoHntRaZadufuGcDyvt has no accounts"],
+						"balance": {
+								"debit_value": {
+										"type": "debit",
+										"amount": "0.3"
+								},
+								"credit_value": {
+										"type": "credit",
+										"amount": "30.24"
+								},
+								"value": {
+										"type": "credit",
+										"amount": "29.94"
+								}
+						}
+				}],
+				"balance": {
+						"debit_value": {
+								"type": "debit",
+								"amount": "30.3"
+						},
+						"credit_value": {
+								"type": "credit",
+								"amount": "30.24"
+						},
+						"value": {
+								"type": "debit",
+								"amount": "0.06"
+						}
+				},
+				"warnings": []
+		}
+}</pre>
+			</article>
+
+		</div>
+	</section>

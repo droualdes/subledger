@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Subledger | Accounting for Developers - APIs for Accounting</title>
+
+<!-- Typekit Fonts -->
+<script src="https://use.typekit.net/quh0hdu.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
+
+<!-- CSS & Bootstrap -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/custom.css">
+
+<!-- Fontawesome JavaScript-->
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+<!-- AnimateScoll JavaScript-->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/animatescroll/animatescroll.js"></script>
+
+<!-- Bootstrap JavaScript: Needs to load last or else mobile menu fails! -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<!-- navigation -->
+<nav role="navigation" class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+    <a class="navbar-brand" href="/">
+      <div class="slogo responsive">Subledger
+      </div>
+    </a>
+        </div>
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav pull-right nav-center">
+      <li>
+        <a class="hidden" href="/#home">Home
+        </a>
+      </li>
+      <li>
+        <a href="/#overview" onclick="$('#overview').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Overview
+        </a>
+      </li>
+      <li>
+        <a href="/#how-works" onclick="$('#how-works').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">How it Works
+        </a>
+      </li>
+      <li>
+        <a href="/#qa" onclick="$('#qa').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Q&amp;A
+        </a>
+      </li>
+      <li>
+        <a href="/blog/index.html">Blog
+        </a>
+      </li>
+      <li>
+        <a href="/#footer" onclick="$('#footer').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Contact
+        </a>
+      </li>
+      <li>
+        <a href="http://app.subledger.com">Login
+        </a>
+      </li>
+      </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="top-spacer">
+</div>
+
+<!-- Article -->
+<article class="blog">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+      <h2>Challenges with building<br />your own in-app accounting system</h2>
+      <p class="author"><span class="glyphicon glyphicon-book"></span> Dan Murphy, Posted on March 5, 2013</p>
+      <div class="addthis_toolbox addthis_default_style addthis_16x16_style" addthis:title="Subledger Blog: Challenges with building<br />your own in-app accounting system">
+      <a class="addthis_button_facebook"></a>
+      <a class="addthis_button_twitter"></a>
+      <a class="addthis_button_pinterest_share"></a>
+      <a class="addthis_button_email"></a>
+      </div>
+      <p>
+        <img class="img-responsive" alt="Nick Giancola" src="http://placehold.it/640x300?text=Missing File: 26aad35.jpg">
+      </p><p class="text-center">
+        <caption>
+          Interview with Nick Giancola, Partner at <a href="http://gophilosophie.com/" target="_blank">gophilosophie.com</a>
+        </caption>
+      </p>
+      <p><label>Dan:</label> Tell us a little about your background and what you do?</p>
+      <p><label>Nick:</label> I’m a partner at philosophie. We’re a software consultancy specializing in designing and developing web applications for clients, ranging from early-stage startups to large enterprises. Personally, I’ve been building web software for the past decade.</p>
+      <p><label>Dan:</label> What sorts of clients typically require ‘in-app accounting’ functionality?<p>
+      <p><label>Nick:</label> Any company dealing with a large number of transactions. In my experience, mostly e-commerce companies.</p>
+      <p><label>Dan:</label> What is the main reason they build ‘in-app accounting’?</p>
+      <p><label>Nick:</label> Businesses tend to manage their accounting manually for as long as possible, pulling CSV data to run reports and manage accounts offline. However, as a business scales, whether it be more transactions between users or more partners becoming involved, really any substantial increase in volume, you’re faced with the decision to either hire more accountants to manage this higher volume or invest in automating the accounting-related tasks and build in-app accounting functionality.</p>
+      <p><label>Dan:</label> What is ‘in-app accounting’? What does it do?</p>
+      <p><label>Nick:</label> Essentially it manages the effect of transactions on involved accounts. For example, as an order is placed, ‘in-app accounting’ may be responsible for dividing up that order among multiple partner accounts based on a predetermined, or sometimes variable, revenue share agreement. It should also be able to generate reports on that data in ways that are useful for the accounting and business teams as well as investors.</p>
+      <p><label>Dan:</label> How do you do this today? How much developer time does it take?</p>
+      <p><label>Nick:</label> Most of the serious in-app accounting implementations I’ve seen and worked on have been custom built from the ground up. The time and resources required vary wildly depending on the needs of each business… I’d say on average you should be prepared to invest 2 months and 1 or 2 developers to get it done right.</p>
+      <p><label>Dan:</label> What are the ongoing maintenance requirements for a DIY accounting solution like this?</p>
+      <p><label>Nick:</label> Pretty much the same as any custom software: Server maintenance, constantly increasing data storage requirements, developer resources to handle bug fixes and technical debt like that…</p>
+      <p><label>Dan:</label> We’ve talked about using Subledger instead of building your own solution, what do you see the benefits of this approach being?</p>
+      <p><label>Nick:</label> Implementing a pre-built solution like Subledger could save your entire team a whole lot of time. Building custom solutions requires a lot of coordination and commitment from the whole team (not just the devs) to ensure the resulting system performs as needed. With a service like Subledger that could meet the needs of the accounting team and handle the financial subtleties of the business, you can build, launch, and iterate your product faster—saving your resources to focus on what really matters: the user.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disqus.com -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+          <div id="disqus_thread">
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disqus.com -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var disqus_url = 'http://subledger.com/blog/building-your-own-in-app-accounting-system/';
+  var disqus_identifier = '29 http://boocx.com/?p=29';
+  var disqus_container_id = 'disqus_thread';
+  var disqus_domain = 'disqus.com';
+  var disqus_shortname = 'boocx';
+  var disqus_title = "Challenges with building your own in-app accounting system";
+  var disqus_config = function () {
+  var config = this; // Access to the config object
+
+  /*
+  All currently supported events:
+  * preData — fires just before we request for initial data
+  * preInit - fires after we get initial data but before we load any dependencies
+  * onInit  - fires when all dependencies are resolved but before dtpl template is rendered
+  * afterRender - fires when template is rendered but before we show it
+  * onReady - everything is done
+  */
+
+  config.callbacks.preData.push(function() {
+  // clear out the container (its filled for SEO/legacy purposes)
+  document.getElementById(disqus_container_id).innerHTML = '';
+  });
+  config.callbacks.onReady.push(function() {
+  // sync comments in the background so we don't block the page
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = '?cf_action=sync_comments&post_id=29';
+
+  var firstScript = document.getElementsByTagName( "script" )[0];
+  firstScript.parentNode.insertBefore(script, firstScript);
+  });
+  };
+  var facebookXdReceiverPath = 'http://subledger.com/wp-content/plugins/disqus-comment-system/xd_receiver.htm';
+  /* ]]> */
+  </script>
+
+  <!-- Disqus.com -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var DsqLocal = {
+  'trackbacks': [
+  ],
+  'trackback_url': "http:\/\/subledger.com\/blog\/building-your-own-in-app-accounting-system\/trackback\/"    };
+  /* ]]> */
+  </script>
+
+  <!-- Disqus.com -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = 'http' + '://' + disqus_shortname + '.' + 'disqus.com' + '/embed.js?pname=wordpress&pver=2.73';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+  /* ]]> */
+  </script>
+
+</article>
+
+<!-- footer -->
+<footer class="container-fluid" id="footer">
+  <div class="row">
+      <div class="col-sm-12 text-center">
+          <a onclick="$('body').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+            <p>
+              <i class="fa fa-long-arrow-up"></i>
+           </p>
+           <p>
+            Back to Top
+          </p>
+          </a>
+          <p class="small">
+            &copy; 2014 Subledger
+          </p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+

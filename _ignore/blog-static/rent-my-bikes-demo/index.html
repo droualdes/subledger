@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Subledger | Accounting for Developers - APIs for Accounting</title>
+
+<!-- Typekit Fonts -->
+<script src="https://use.typekit.net/quh0hdu.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
+
+<!-- CSS & Bootstrap -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/custom.css">
+
+<!-- Fontawesome JavaScript-->
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+<!-- AnimateScoll JavaScript-->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/animatescroll/animatescroll.js"></script>
+
+<!-- Bootstrap JavaScript: Needs to load last or else mobile menu fails! -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<!-- navigation -->
+<nav role="navigation" class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+    <a class="navbar-brand" href="/">
+      <div class="slogo responsive">Subledger
+      </div>
+    </a>
+        </div>
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav pull-right nav-center">
+      <li>
+        <a class="hidden" href="/#home">Home
+        </a>
+      </li>
+      <li>
+        <a href="/#overview" onclick="$('#overview').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Overview
+        </a>
+      </li>
+      <li>
+        <a href="/#how-works" onclick="$('#how-works').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">How it Works
+        </a>
+      </li>
+      <li>
+        <a href="/#qa" onclick="$('#qa').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Q&amp;A
+        </a>
+      </li>
+      <li>
+        <a href="/blog/index.html">Blog
+        </a>
+      </li>
+      <li>
+        <a href="/#footer" onclick="$('#footer').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Contact
+        </a>
+      </li>
+      <li>
+        <a href="http://app.subledger.com">Login
+        </a>
+      </li>
+      </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="top-spacer">
+</div>
+
+<!-- Article -->
+<article class="blog">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+      <h2>Announcing Rent My Bikes Demo with Balanced</h2>
+      <p class="author"><span class="glyphicon glyphicon-book"></span> Subledger, Posted on November 7, 2013</p>
+      <div class="addthis_toolbox addthis_default_style addthis_16x16_style addthis-padding" addthis:title="Announcing Rent My Bikes Demo with Balanced">
+      <a class="addthis_button_facebook"></a>
+      <a class="addthis_button_twitter"></a>
+      <a class="addthis_button_pinterest_share"></a>
+      <a class="addthis_button_email"></a>
+      </div>
+      <!-- 16:9 aspect ratio -->
+      <p>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe src="//player.vimeo.com/video/79728163" width="640" height="360" frameborder="0" title="In-Application Accounting" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+      </p>
+      <p>Today we’re excited to announce a neat demonstration marketplace using <a href="https://www.balancedpayments.com" target="_blank">Balanced</a> and Subledger.</p>
+      <p>Balanced is a seamless payments API for marketplace businesses to charge buyers, hold funds in escrow, and pay-out sellers with ease. We think Balanced is a great product and we are thrilled to see our APIs working together.</p>
+      <p><a href="https://www.balancedpayments.com" target="_blank">Balanced</a> released a demonstration marketplace called <a href="http://rentmybikes.subledger.com/account?token=5MeD9x3CXZdZQDogszfm" target="_blank">Rent My Bikes</a>, an Airbnb-like platform for bicycles using the Balanced API. We noticed that while Balanced enabled the money to move through the marketplace, generating accounting/financial reports still required the use of spreadsheets and/or custom development.</p>
+      <p>That’s where Subledger stepped in. We added the Subledger API to the <a href="http://rentmybikes.subledger.com/account?token=5MeD9x3CXZdZQDogszfm" target="_blank">Rent My Bikes</a> marketplace, adding these accounting features to the marketplace:
+      <p>‘One-click’ accounting reports, enabling the finance department to instantly generate audit-ready reports like trial balance sheets and sales reports for the marketplace.</p>
+      <p>Showing buyers and sellers on Rent My Bikes their account balance and transaction history</p>
+      <p>Quickly showing the Rent My Bikes management team where they are financially, answering questions like:</p>
+      <p>Do we have enough funds in escrow to service our Account Payable to sellers?</p>
+      <p>Are we making a profit?</p>
+      <p>Who are the most profitable sellers?</p>
+      <p><a href="http://rentmybikes.subledger.com/account?token=5MeD9x3CXZdZQDogszfm" target="_blank">Check out the the live demo here.</a></p>
+      <p>You can check out the code behind this version of Rent My Bikes <a href="https://github.com/subledger/rentmybikes-rails" target="_blank">on Github.</a></p>
+      <h3>Here are some of the key features:</h3>
+      <h4>1. Financial Health Check</h4>
+      <p>
+        <img class="img-responsive" alt="FinancialHealthCheckScreenshot.png" src="images/FinancialHealthCheckScreenshot.png">
+      </p>
+      <p>Running a successful marketplace business always involves holding money on behalf of other people, including sellers and customers. You might have $400,000 in your marketplace’s escrow account, but $350,000 is payable to sellers, $10,000 is tax and $40,000 is your revenue. This sort of breakdown is critical to understanding the health of the marketplace and ensuring you have funds available for payouts.</p>
+      <p>In the Rent My Bikes demo, you can see how this breakdown works in the reporting section of the Subledger application. Click ‘GO!’ and watch Subledger generate the Balance Sheet in seconds.</p>
+      <h4>2. Audit Ready Accounting</h4>
+      <p>
+        <img class="img-responsive" alt="Audit Ready Accounting Screenshot" src="images/AuditReadyAccountingScreenshot.jpg">
+      </p>
+      <p>Your CFO is in charge of the financial health of your business, but they also have to produce ‘audit ready’ financial reports that tie-out to transactions in the marketplace. Subledger records every transaction in double-entry accounting format with a reference URL to a document proving that the transaction occurred (ready for the even the pickiest of auditors).</p>
+      <p>In the Rent My Bikes demo, you can see every transaction posting as a double-entry journal entry in the Activity Stream.</p>
+      <h4>3. Seller/Buyer Transparency</h4>
+      <p>
+        <img class="img-responsive" alt="Seller/Buyer Transparency Screenshot" src="images/SellerBuyerTransparencyScreenshot.png">
+      </p>
+      <p>Having a clear statement of user financials is critical for reducing billing related support tickets, particularly as the amount of buyers and sellers your company has to support, begins to grow.</p>
+      <p>With Subledger, both buyers and sellers have easy access to their current balance, transaction history, and a link back to a reference document (receipt or invoice) proving that the transaction occurred. This also allows for easy refunds, as they show up immediately on the customers account. Rent a bike and check out the “My Account” section in Rent My Bikes to see how this works.</p>
+      <p>We hope you like the addition of Subledger to <a href="http://rentmybikes.subledger.com/account?token=5MeD9x3CXZdZQDogszfm" target="_blank">Rent My Bikes</a> and that it gives you a taste of the power of both services combined.</p>
+      <p>We will be adding to Rent My Bikes (sales tax, currency exchange etc) over the coming months, so please let us know if you would like to see anything in particular.</p>
+      <p>Have questions about how it all works or you just want to say hi, ping me an email <a href="mailto:info@subledger.com">info@subledger.com</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disqus.com -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+          <div id="disqus_thread">
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disqus.com -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var disqus_url = 'http://subledger.com/blog/rent-my-bikes-demo/';
+  var disqus_identifier = '52 http://subledger.com/?p=52';
+  var disqus_container_id = 'disqus_thread';
+  var disqus_domain = 'disqus.com';
+  var disqus_shortname = 'boocx';
+  var disqus_title = "Announcing Rent My Bikes Demo with Balanced";
+  var disqus_config = function () {
+  var config = this; // Access to the config object
+
+  /*
+  All currently supported events:
+  * preData — fires just before we request for initial data
+  * preInit - fires after we get initial data but before we load any dependencies
+  * onInit  - fires when all dependencies are resolved but before dtpl template is rendered
+  * afterRender - fires when template is rendered but before we show it
+  * onReady - everything is done
+  */
+
+  config.callbacks.preData.push(function() {
+  // clear out the container (its filled for SEO/legacy purposes)
+  document.getElementById(disqus_container_id).innerHTML = '';
+  });
+  config.callbacks.onReady.push(function() {
+  // sync comments in the background so we don't block the page
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = '?cf_action=sync_comments&post_id=52';
+
+  var firstScript = document.getElementsByTagName( "script" )[0];
+  firstScript.parentNode.insertBefore(script, firstScript);
+  });
+  };
+  var facebookXdReceiverPath = 'http://subledger.com/wp-content/plugins/disqus-comment-system/xd_receiver.htm';
+  /* ]]> */
+  </script>
+
+  <!-- Disqus.com -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var DsqLocal = {
+  'trackbacks': [
+  ],
+  'trackback_url': "http:\/\/subledger.com\/blog\/rent-my-bikes-demo\/trackback\/"    };
+  /* ]]> */
+  </script>
+
+  <!-- Disqus.com -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = 'http' + '://' + disqus_shortname + '.' + 'disqus.com' + '/embed.js?pname=wordpress&pver=2.73';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+  /* ]]> */
+  </script>
+
+</article>
+
+<!-- footer -->
+<footer class="container-fluid" id="footer">
+  <div class="row">
+      <div class="col-sm-12 text-center">
+          <a onclick="$('body').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+            <p>
+              <i class="fa fa-long-arrow-up"></i>
+           </p>
+           <p>
+            Back to Top
+          </p>
+          </a>
+          <p class="small">
+            &copy; 2014 Subledger
+          </p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+

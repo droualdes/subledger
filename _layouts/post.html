@@ -1,0 +1,42 @@
+---
+layout: default
+---
+	<article class="blog top-spacer bottom-spacer" id="{{ page.title }}">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2">
+					<h2>
+						{{ page.title }}
+					</h2>
+					<p class="author">
+						<span class="glyphicon glyphicon-book">
+						</span>
+						&nbsp;Written by {{ page.author }}, Posted on <time itemprop="datecreated" datetime="{{ page.date | date: '%B %d, %Y' }}">{{ page.date | date: '%B %d, %Y' }}</time>
+					</p>
+					<div class="addthis_toolbox addthis_default_style addthis_16x16_style addthis-padding" addthis:title="{{ page.title }}">
+						<a class="addthis_button_facebook">
+						</a>
+						<a class="addthis_button_twitter">
+						</a>
+						<a class="addthis_button_pinterest_share">
+						</a>
+						<a class="addthis_button_email">
+						</a>
+					</div>
+					{{ content }}
+				</div>
+			</div>
+		</div>
+	</article>
+
+	<!-- Disqus.com -->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<div id="disqus_thread">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% include disqus.html %}

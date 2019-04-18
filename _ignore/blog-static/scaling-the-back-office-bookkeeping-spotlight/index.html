@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:og="http://opengraphprotocol.org/schema/">
+<head>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Subledger | Accounting for Developers - APIs for Accounting</title>
+
+<!-- Typekit Fonts -->
+<script src="https://use.typekit.net/quh0hdu.js"></script>
+<script>try{Typekit.load();}catch(e){}</script>
+
+<!-- CSS & Bootstrap -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/custom.css">
+
+<!-- Fontawesome JavaScript-->
+<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+<!-- AnimateScoll JavaScript-->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/animatescroll/animatescroll.js"></script>
+
+<!-- Bootstrap JavaScript: Needs to load last or else mobile menu fails! -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<!-- navigation -->
+<nav role="navigation" class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+    <a class="navbar-brand" href="/">
+      <div class="slogo responsive">Subledger
+      </div>
+    </a>
+        </div>
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav pull-right nav-center">
+      <li>
+        <a class="hidden" href="/#home">Home
+        </a>
+      </li>
+      <li>
+        <a href="/#overview" onclick="$('#overview').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Overview
+        </a>
+      </li>
+      <li>
+        <a href="/#how-works" onclick="$('#how-works').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">How it Works
+        </a>
+      </li>
+      <li>
+        <a href="/#qa" onclick="$('#qa').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Q&amp;A
+        </a>
+      </li>
+      <li>
+        <a href="/blog/index.html">Blog
+        </a>
+      </li>
+      <li>
+        <a href="/#footer" onclick="$('#footer').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">Contact
+        </a>
+      </li>
+      <li>
+        <a href="http://app.subledger.com">Login
+        </a>
+      </li>
+      </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="top-spacer">
+</div>
+
+<!-- Article -->
+<article class="blog blog:first-of-type" id="Bookkeeping Spotlight">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <h2>Bookkeeping Spotlight</h2>
+        <p class="author"><span class="glyphicon glyphicon-book"></span> Posted on February 11, 2014</p>
+          <div class="addthis_toolbox addthis_default_style addthis_16x16_style addthis-padding" addthis:description="Subledger Blog: Bookkeeping Spotlight">
+          <a class="addthis_button_facebook"></a>
+          <a class="addthis_button_twitter"></a>
+          <a class="addthis_button_pinterest_share"></a>
+          <a class="addthis_button_email"></a>
+          </div>
+          <p>We typically think of sales &amp; marketing as the “beginning” of the sales funnel and the payment as the “end”. But if you look at things from the perspective of the back-office, payment/payout transactions are actually where the work begins. This post hopes to shine a little light on the bookkeeping and financial reporting part of the back-office.</p>
+          <h3>What is bookkeeping?</h3>
+          <p>Financial transactions have to be accounted for in the merchant’s ERP system (aka: accounting system or general ledger) in order to produce financial reports for business management and audit purposes.</p>
+          <p>
+            <img class="img-responsive" alt="Old School Accounting Photo" src="images/OldSchoolAccounting.jpg">
+          </p>
+          <p>Bookkeeping is the process of structuring raw transaction data (e.g. payment gateway Excel dump) in accounting format and recording it in the ERP.</p>
+          <h4>Here’s an example of a very simple transaction and it’s associated accounting entry.</h4>
+          <p>Transaction: $100 purchase, where the seller takes 80% of transaction value and 20% goes to the marketplace.</p>
+          <div class="code red">
+          <p>debit.cash(100)</p>
+          <p>credit.revenue(20)</p>
+          <p>credit.seller_accounts_payable(80)</p>
+          </div>
+          <p>As you can see it’s not a simple copy/paste job and therein lies the art of bookkeeping. As the transaction volume increases it becomes an unwieldy task to close the books every month. Typically these three areas become real pain points at scale:</p>
+          <h3>Finance team time burn</h3>
+          <p>Bookkeeping and financial reporting is a labor intensive monthly process for the finance team that scales with payment volume. The stopgap solution is to add more people to the finance department.</p>
+          <h3>Audit risk</h3>
+          <p>With a semi-manual process like bookkeeping there is inherent human error risk. To mitigate this risk a lot of finance team time is spent re-checking financials to ensure that they are ready for external audit.</p>
+          <h3>Engineering time burn</h3>
+          <p>At scale accounting for in-application transactions become unwieldy and the solution is typically:</p>
+          <p>&mdash; Start building some sort of automated subledger internally to automate the process or</p>
+          <p>&mdash; Implement an enterprise style ‘all in one’ billing solution like <a href="http://www.zuora.com/how-it-works/new-features/index.html" target="_blank">Zuora</a></p>
+          <p>Both options require significant engineering effort and distract from the business from it’s core competency.</p>
+          <p>We think the day has come where you can mash-up your payment API and Subledger to automate the payments and bookkeeping part of your back-office. <a href="/blog/programmable-commerce-and-the-high-velocity-back-office/?">#ProgrammableCommerce</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disqus.com -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+          <div id="disqus_thread">
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Disqus.com -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var disqus_url = 'http://subledger.com/blog/scaling-the-back-office-bookkeeping-spotlight/';
+  var disqus_identifier = '93 http://subledger.com/?p=93';
+  var disqus_container_id = 'disqus_thread';
+  var disqus_domain = 'disqus.com';
+  var disqus_shortname = 'boocx';
+  var disqus_title = "Bookkeeping spotlight";
+  var disqus_config = function () {
+  var config = this; // Access to the config object
+
+  /*
+  All currently supported events:
+  * preData — fires just before we request for initial data
+  * preInit - fires after we get initial data but before we load any dependencies
+  * onInit  - fires when all dependencies are resolved but before dtpl template is rendered
+  * afterRender - fires when template is rendered but before we show it
+  * onReady - everything is done
+  */
+
+  config.callbacks.preData.push(function() {
+  // clear out the container (its filled for SEO/legacy purposes)
+  document.getElementById(disqus_container_id).innerHTML = '';
+  });
+  config.callbacks.onReady.push(function() {
+  // sync comments in the background so we don't block the page
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = '?cf_action=sync_comments&post_id=93';
+
+  var firstScript = document.getElementsByTagName( "script" )[0];
+  firstScript.parentNode.insertBefore(script, firstScript);
+  });
+  };
+  var facebookXdReceiverPath = 'http://subledger.com/wp-content/plugins/disqus-comment-system/xd_receiver.htm';
+  /* ]]> */
+  </script>
+
+  <!-- Disqus.com -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var DsqLocal = {
+  'trackbacks': [
+  ],
+  'trackback_url': "http:\/\/subledger.com\/blog\/scaling-the-back-office-bookkeeping-spotlight\/trackback\/"    };
+  /* ]]> */
+  </script>
+
+  <!-- Disqus.com -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = 'http' + '://' + disqus_shortname + '.' + 'disqus.com' + '/embed.js?pname=wordpress&pver=2.73';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+  /* ]]> */
+  </script>
+
+</article>
+
+<!-- footer -->
+<footer class="container-fluid" id="footer">
+  <div class="row">
+      <div class="col-sm-12 text-center">
+          <a onclick="$('body').animatescroll({scrollSpeed:2000,easing:'easeInOutCirc'});">
+            <p>
+              <i class="fa fa-long-arrow-up"></i>
+           </p>
+           <p>
+            Back to Top
+          </p>
+          </a>
+          <p class="small">
+            &copy; 2014 Subledger
+          </p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
+

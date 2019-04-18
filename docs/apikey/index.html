@@ -1,0 +1,58 @@
+---
+layout: default
+---
+<!-- How it works -->
+  <section class="container docs text-center" id="how-works">
+
+    <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+      <h2>
+        Create an API Key
+      </h2>
+      <p class="text-left">
+        An API key is created when an identity is created in Subledger. The response contains both an <code>active_identity</code> and an <code>active_key</code> with your credentials, so you can securely interact with Subledger.
+      </p>
+    </div>
+  </div>
+
+  <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+      <pre>
+curl -X POST -H "Content-Type: application/json" -d \
+"email":          "demo@subledger.com",
+"description":    "lemonade demo identity",
+"reference":      "http://sublegder.com"
+}' \
+https://api.subledger.com/v2/identities</pre>
+  </div>
+
+
+  <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+    <p>
+      and the response received should look like this:
+    </p>
+  </div>
+
+  <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+<pre>
+{
+"active_identity":  {
+"id":             "Qse2119xCatsL3UuUIFWCp",
+"email":          "demo@subledger.com",
+"description":    "lemonade demo identity",
+"reference":      "http://sublegder.com",
+"version":        1
+},
+"active_key":     {
+"id":             "Z0NpheNlvXLMJCoj0612hr",
+"identity":       "Qse2119xCatsL3UuUIFWCp",
+"secret":         "rr54CeYEOAZT5KlyUJ9sP7"
+}
+}</pre>
+  </div>
+
+  <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-left">
+    <p>
+      We recommend storing this entire response securely for future reference. It is possible to create additional keys and archive active keys to disable them. This allows for key rotations to be performed where multiple keys are active during the rotation.
+    </p>
+  </div>
+
+</section>
