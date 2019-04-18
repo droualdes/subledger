@@ -16,18 +16,18 @@
 
 	<!-- CSS & Bootstrap -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{{site.baseurl | relative_url }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="{{site.baseurl | relative_url }}/bower_components/bootstrap/dist/css/custom.css">
+	<link rel="stylesheet" href="{{ "/bower_components/bootstrap/dist/css/bootstrap.min.css" | relative_url }}">
+	<link rel="stylesheet" href="{{ "/bower_components/bootstrap/dist/css/custom.css" | relative_url }}">
 
 	<!-- Fontawesome JavaScript-->
 	<link rel="stylesheet" href="{{ "/bower_components/font-awesome/css/font-awesome.min.css" | relative_url }}">
 
 	<!-- AnimateScoll JavaScript-->
-	<script src="{{site.baseurl | relative_url }}//bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="{{site.baseurl | relative_url }}//bower_components/animatescroll/animatescroll.js"></script>
+	<script src="{{ "/bower_components/jquery/dist/jquery.min.js" | relative_url }}"></script>
+	<script src="{{ "/bower_components/animatescroll/animatescroll.js" | relative_url }}"></script>
 
 	<!-- Bootstrap JavaScript: Needs to load last or else mobile menu fails! -->
-	<script src="{{site.baseurl | relative_url }}//bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="{{ "//bower_components/bootstrap/dist/js/bootstrap.min.js" | relative_url }}></script>
 
     {% if page.url == 'blog/index.html' %}
     {% else %}
