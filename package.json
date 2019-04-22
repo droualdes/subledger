@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "@fortawesome/fontawesome-pro": "^5.8.1"
+  },
+  "dependencies": {
+    "animatescroll.js": "^1.0.7",
+    "bootstrap": "^3.4.1"
   }
 }
