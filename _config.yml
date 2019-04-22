@@ -11,7 +11,7 @@ email: support@subledger.com
 description: Subledger is a set of powerful APIs that allow you to quickly build the accounting part of your app.
 baseurl: ""
 url: "http://subledger.dev"
-exclude: [ '_site/', '_ignore/', 'README.md', 'Subledger.sublime-project', 'Subledger.sublime-workspace', 'config.codekit']
+exclude: [ '_site/', '_ignore/', 'README.md']
 
 # Build
 markdown: kramdown
