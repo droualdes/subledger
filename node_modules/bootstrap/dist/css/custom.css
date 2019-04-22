@@ -1,0 +1,770 @@
+/* Customer CSS for Subledger.com */
+
+/* START STICKY FOOTER CODE */
+html {
+position: relative; /* Part of Sticky footer */
+min-height: 100%; /* Part of Sticky footer */
+}
+body {
+margin-bottom: 300px; /* This has to match footer height */
+}
+/* END STICKY FOOTER CODE */
+
+/* ============== */
+/* COMMON CLASSES */
+/* ============== */
+
+body {
+font-family: "museo-sans",sans-serif;
+font-style: normal;
+font-weight: 300;
+line-height: 1.4em;
+color: #555;
+background-color: #f5f4f0; /* #f1f1f1; */
+text-rendering: optimizeLegibility;
+-webkit-font-smoothing: antialiased;
+}
+
+h1 {
+font-weight: 100;
+font-size: 2.6em;
+margin-top: 10px;
+margin-bottom: 25px;
+}
+
+h2 {
+font-weight: 100;
+font-size: 2.6em;
+margin-top: 10px;
+margin-bottom: 25px;
+}
+
+h3 {
+font-weight: 700;
+font-size: 1.3em;
+margin-bottom: 20px;
+}
+
+h4 {
+font-weight: 700;
+font-size: 1.2em;
+margin-bottom: 20px;
+}
+
+h5 {
+font-weight: 700;
+font-size: 1.1em;
+margin-bottom: 20px;
+}
+
+h6 {
+font-weight: 70;
+font-size: 1em;
+margin-bottom: 20px;
+}
+
+p {
+font-weight: 300;
+font-size: 1em;
+line-height: 1.4em;
+margin-bottom: 20px;
+}
+
+a {
+color: #458bc7;
+text-decoration: none;
+}
+
+a:hover {
+text-decoration: none;
+}
+
+strong {
+font-weight: 700;
+}
+
+section {
+padding-top: 40px;
+padding-bottom: 40px;
+}
+
+.lead { /* Used after a h2 to enlarge the p text */
+line-height: 1.5em;
+margin-bottom: 26px;
+color: #999;
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {  
+.lead { /* Used after a h2 to enlarge the p text */
+font-size: 1.1em;
+}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+.lead { /* Used after a h2 to enlarge the p text */
+font-size: 1.1em;
+}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+.lead { /* Used after a h2 to enlarge the p text */
+font-size: 1.2em;
+}
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+.lead { /* Used after a h2 to enlarge the p text */
+font-size: 1.3em;
+}
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+.lead { /* Used after a h2 to enlarge the p text */
+font-size: 1.3em;
+}
+}
+
+pre { /* terminal window text */
+padding: 30px;
+margin-top: 10px;
+margin-bottom: 10px;
+background-color: #262F36;
+border-radius: 8px;
+color: #fff;
+line-height: 1.9em;
+/* below for horizontal scroll */
+overflow: auto;
+-ms-word-wrap: normal;
+word-wrap: normal;
+overflow-wrap: normal;
+white-space: pre;
+}
+
+code {/* inline terminal text */
+padding: 0;
+font-size: 90%;
+color: inherit;
+font-weight: 900;
+background-color: inherit;
+}
+
+code.yellow { /* for fancy terminal windows */
+color: #fffd80;
+}
+
+code.purple { /* for fancy terminal windows */
+color: #e573d6;
+}
+
+.red { /* for blog */
+color: #df0000;
+}
+
+.top-spacer:first-child {
+padding-top: 60px;
+}
+
+.bottom-spacer {
+padding-bottom: 60px;
+}
+
+.blockquote {
+font-weight: 200;
+font-size: 16px;
+font-style: italic;
+border-left: none;
+padding: 14px 0 20px 40px;
+margin: 0;
+}
+
+.btn {
+margin-bottom: 20px;
+}
+
+/* ========== */
+/* NAVIGATION */
+/* ========== */
+
+.navbar {
+margin-bottom: 0;
+background-color: #f5f4f0;
+}
+
+.slogo {
+margin-top: -10px;
+font-family: "museo-sans",sans-serif;
+display: block;
+text-indent: -9999px;
+width: 200px;
+height: 40px;
+background: url(/images/subledger-logo-plus.svg);
+}
+
+/* ========= */
+/* JUMBOTRON */
+/* ========= */
+
+.jumbotron-fluid {
+width: 100%;
+background-color: #e5e4e0;
+margin-bottom: 15px;
+padding-top: 70px;
+padding-bottom: 0;
+/* adds chart to background */
+/*background: url('/images/chart.png') center center;*/
+/*background-size: cover;*/
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {  
+.jumbotron-fluid {
+height: 280px;
+}
+.jumbotron-fluid h1 {
+font-size: 1.6em;
+font-weight: 900;
+margin: 0 0 10px 0;
+color: #333;
+}
+.jumbotron-fluid p {
+font-size: 1.2em;
+font-weight: 700;
+margin: 0 44px 0 44px;
+color: #999;
+}
+.jumbotron-fluid img {
+padding-top: 20px;
+height: 220px;
+display: none;
+}
+.jumbotron-fluid .rwd-line { /* For custom line breaks */
+display: block;
+}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+.jumbotron-fluid {
+height: 492px;
+}
+.jumbotron-fluid h1 {
+font-size: 2em;
+font-weight: 900;
+margin: 0 44px 10px 44px;
+color: #333;
+}
+.jumbotron-fluid p {
+font-size: 1.2em;
+font-weight: 700;
+margin: 0 44px 0 44px;
+color: #999;
+}
+.jumbotron-fluid img {
+padding-top: 20px;
+height: 340px;
+display: inline-block;
+}
+.jumbotron-fluid .rwd-line { /* For custom line breaks */
+display: block;
+}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+.jumbotron-fluid {
+height: 632px;
+}
+.jumbotron-fluid h1 {
+font-size: 2.6em;
+font-weight: 900;
+margin: 0 44px 10px 44px;
+color: #333;
+}
+.jumbotron-fluid p {
+font-size: 1.2em;
+font-weight: 700;
+margin: 0 44px 0 44px;
+color: #999;
+}
+.jumbotron-fluid img {
+margin: auto;
+padding-top: 20px;
+height: 74%;
+width: 74%;
+display: inline-block;
+}
+.jumbotron-fluid .rwd-line { /* For custom line breaks */
+display: block;
+}
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+.jumbotron-fluid {
+height: 696px;
+}
+.jumbotron-fluid h1 {
+font-size: 2.6em;
+font-weight: 900;
+margin: 0 44px 10px 44px;
+color: #333;
+}
+.jumbotron-fluid p {
+font-size: 1.2em;
+font-weight: 700;
+margin: 0 44px 0 44px;
+color: #999;
+}
+.jumbotron-fluid img {
+margin: auto;
+padding-top: 20px;
+height: 74%;
+width: 74%;
+display: inline-block;
+}
+.jumbotron-fluid .rwd-line { /* For custom line breaks */
+display: inline-block;
+}
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+.jumbotron-fluid {
+height: 696px;
+}
+.jumbotron-fluid h1 {
+font-size: 2.6em;
+font-weight: 900;
+margin: 0 44px 10px 44px;
+color: #333;
+}
+.jumbotron-fluid p {
+font-size: 1.2em;
+font-weight: 700;
+margin: 0 44px 0 44px;
+color: #999;
+}
+.jumbotron-fluid img {
+margin: auto;
+padding: 20px 0 0 0;
+height: 61%;
+width: 61%;
+display: inline-block;
+}
+.jumbotron-fluid .rwd-line { /* For custom line breaks */
+display: inline-block;
+}
+}
+
+
+
+.main-photo {
+background-image: url("images/main-photo.png") no-repeat center top;
+}
+
+/* ======== */
+/* OVERVIEW */
+/* ======== */
+
+.overview {
+padding-top: 40px;
+padding-bottom: 60px;
+}
+
+.overview .col-sm-5 {
+padding: 29px 30px 20px 96px;
+}
+
+.overview h3 {
+font-size: 1.1em;
+font-weight: 900;
+margin-top: 0;
+margin-bottom: 6px;
+text-transform: uppercase;
+}
+
+.overview p {
+color: #999;
+}
+
+.overview img {
+padding-bottom: 10px;
+}
+
+.icon {
+position: absolute;
+top: 29px;
+left: 53px;
+}
+
+.cross { /* Horizontal Line */
+width: 460px;
+background-color: #ccc;
+height: 1px;
+position: absolute;
+bottom: 5px;
+left: 50%;
+margin-left: -230px;
+}
+
+.cross div { /* Vertical Line */
+background-color: #ccc;
+height: 184px;
+width: 1px;
+left: 50%;
+position: absolute;
+top: -98px;
+}
+
+/* ============ */
+/* HOW IT WORKS */
+/* ============ */
+
+.how-works {
+background-color: #e5e4e0;
+}
+
+.how-works p {
+padding-left: 20px;
+padding-right: 20px;
+margin-bottom: 30px;
+}
+
+/* =================== */
+/* QUESTIONS & ANSWERS */
+/* =================== */
+
+.qa h2 {
+color: #555;
+}
+
+.qa h4 {
+color: #555;
+}
+
+.qa {
+color: #999;
+}
+
+/* ====== */
+/* iOS APP */
+/* ====== */
+
+.ios-app {
+background-color: #e5e4e0;
+min-height: 388px;
+}
+
+.ios-app .iphone {
+margin-bottom: -40px;
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (min-width : 320px) {  
+.ios-app .iphone {
+display: none;
+}
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (min-width : 480px) {
+.ios-app .iphone {
+display: inline-block;
+}
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+.ios-app .iphone {
+display: inline-block;
+}
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+.ios-app .iphone {
+display: inline-block;
+}
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+.ios-app .iphone {
+display: inline-block;
+}
+}
+
+.ios-app img {
+margin-bottom: 28px;
+}
+
+/* ===== */
+/* TEAM */
+/* ===== */
+
+.team header {
+margin-bottom: 40px;
+}
+
+.team h4 {
+font-size: 1.2em;
+font-weight: 700;
+margin-bottom: 4px;
+}
+
+.team p {
+font-size: 1.2em;
+}
+
+p.job-description {
+font-size: 1em;
+}
+
+.social-media {
+margin: 0 2px 50px 2px;
+}
+
+.team img {
+margin-bottom: 10px;
+}
+
+.img-thumbnail {
+border-radius: 0;
+padding: 2px;
+background-color: #fff;
+border: 5px solid #fff;
+-webkit-box-shadow: 4px 4px 8px 0px rgba(191,191,191,1);
+-moz-box-shadow: 4px 4px 8px 0px rgba(191,191,191,1);
+box-shadow: 4px 4px 8px 0px rgba(191,191,191,1);
+padding-bottom: 20px;
+}
+
+.rotate-3 { /* for polaroid photos */
+-webkit-transform:rotate(3deg);
+-moz-transform:rotate(3deg);
+-o-transform:rotate(3deg);
+-ms-transform:rotate(3deg);
+}
+
+.rotate-2 { /* for polaroid photos */
+-webkit-transform:rotate(-3deg);
+-moz-transform:rotate(-3deg);
+-o-transform:rotate(-3deg);
+-ms-transform:rotate(-3deg);
+}
+
+.rotate-1 { /* for polaroid photos */
+-webkit-transform:rotate(1deg);
+-moz-transform:rotate(1deg);
+-o-transform:rotate(1deg);
+-ms-transform:rotate(1deg);
+}
+
+/* ======= */
+/* SIGN UP */
+/* ======= */
+
+.signup {
+background-color: #e5e4e0;
+}
+
+.form-control {
+margin-bottom: 36px;
+}
+
+.signup .panel {
+background-color: #458bc7;
+padding: 50px 35px 35px 35px;
+}
+
+/* ====== */
+/* FOOTER */
+/* ====== */
+
+/* START STICKY FOOTER CODE */
+footer {
+position: absolute;
+bottom: 0;
+width: 100%;
+height: 300px;/* Set the fixed height of the footer here */
+}
+/* END STICKY FOOTER CODE */
+
+footer {
+padding-top: 40px;
+padding-bottom: 60px;
+}
+
+.social-media-2x {
+margin: 10px 6px 6px 6px;
+}
+
+footer .small {
+padding-bottom: 20px;
+}
+
+footer img {
+margin-bottom: 20px;
+}
+
+/* ============ */
+/* PHOTO BREAKS */
+/* ============ */
+
+.photobreak-1 {
+background: url(../images/02.jpg) 50% 0 fixed; 
+background-size:cover;
+height: auto;
+min-height: 300px;  
+margin: 0 auto; 
+width: 100%; 
+position: relative;
+}
+
+.photobreak-2 {
+background: url(../images/02.jpg) 50% 0 fixed; 
+background-size:cover;
+height: auto;
+min-height: 300px;  
+margin: 0 auto; 
+width: 100%; 
+position: relative;
+}
+
+.photobreak-3 {
+background: url(../images/03.jpg) 50% 0 fixed; 
+background-size:cover;
+height: auto;
+min-height: 300px;  
+margin: 0 auto; 
+width: 100%; 
+position: relative;
+}
+
+.photobreak-4 {
+background: url(../images/04.jpg) 50% 0 fixed; 
+background-size:cover;
+height: auto;
+min-height: 300px;  
+margin: 0 auto; 
+width: 100%; 
+position: relative;
+}
+
+.photobreak-5 {
+background: url(../images/SanFrancisco.jpg) 50% 0 fixed; 
+background-size:cover;
+height: auto;
+min-height: 300px;  
+margin: 0 auto; 
+width: 100%; 
+position: relative;
+}
+
+/* ==== */
+/* DOCS */
+/* ==== */
+
+.docs h2 {
+padding-top: 20px;
+}
+
+.docs pre { /* terminal window text */
+margin-bottom: 30px;
+}
+
+/* ==== */
+/* BLOG */
+/* ==== */
+
+.blog h3 {
+font-weight: 700;
+font-size: 1.1em;
+margin-bottom: 4px;
+}
+
+
+.blog:first-of-type {
+border-top: none;
+}
+
+.blog ul {
+list-style:none;
+padding-left:0;
+}
+
+/*.blog li {
+font-weight: 700;
+font-size: 1.1em;
+line-height: 1.4em;
+color: #999;
+margin-bottom: 2em;
+}
+*/
+
+.blog li .date {
+font-size: .9em;
+}
+
+.blog .date {
+font-weight: 300;
+font-size: 1em;
+line-height: 1.4em;
+list-style-type: none;
+color: #999;
+margin-bottom: 26px;
+}
+
+.glyphicon-book:before {
+color: #999;
+font-size: .8em;
+padding-right: .4em;
+}
+
+.img-padding { /* nixed this, used <p></p> wrapper around <img> instead */
+margin-bottom: 14px;
+}
+
+.addthis-padding {
+margin-top: 12px;
+margin-bottom: 12px;
+}
+
+.author {
+font-size: .8em;
+white-space: nowrap;
+padding-top: 4px;
+padding-bottom: 4px;
+border-top: 1px dotted #ccc;
+border-bottom: 1px dotted #ccc;
+font-weight: 500;
+}
+
+.blockquote {
+border-left: 5px solid #ccc;
+}
+
+.container-fluid.footer p {
+padding-top: 60px;
+}
+
+/* ======= */
+/* TESTING */
+/* ======= */
+
+.rwd-line { /* For custom line breaks */
+display: block;
+}
+
+#hoverNavigation /* AnimateScroll Navigation */
+{
+position: fixed;
+bottom: 0;
+right: 25px;
+width: 100px;
+}
