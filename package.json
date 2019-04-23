@@ -5,5 +5,21 @@
   "dependencies": {
     "animatescroll.js": "^1.0.7",
     "bootstrap": "^3.4.1"
+  },
+  "name": "subledger",
+  "version": "1.0.0",
+  "description": "Subledger Website",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Roualdes",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "(https://github.com/droualdes/subledger.git)"
   }
 }
