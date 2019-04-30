@@ -11,3 +11,8 @@ Thumbs.db
 # David's Prefs #
 ######################
 _site/
+
+# Jekyll latest
+######################
+.sass-cache*
+.jekyll-metadata
